@@ -1,0 +1,945 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="linux network," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="初入 linux-centos 6.5(一)
+
+
+0x00前言
+Linux承载的东西太多，它鼓励大家通过代码分享智慧，它是一个开放的、自由的平台的核心力量，Linux让你参与进来。承载了当初很多“黑客”的精神吧，我已经忘了我为了什么装linux了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux">
+<meta property="og:url" content="https://shawnleon.github.io/2016/08/03/linux-let-me-in/index.html">
+<meta property="og:site_name" content="冲破桎梏">
+<meta property="og:description" content="初入 linux-centos 6.5(一)
+
+
+0x00前言
+Linux承载的东西太多，它鼓励大家通过代码分享智慧，它是一个开放的、自由的平台的核心力量，Linux让你参与进来。承载了当初很多“黑客”的精神吧，我已经忘了我为了什么装linux了。">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/0.jpg">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/1.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/2.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/3.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/4.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/5.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/6.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/7.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/8.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/9.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/10.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/11.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/12.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/13.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/linux-cntos6.5/14.png">
+<meta property="og:updated_time" content="2016-08-05T00:55:01.793Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux">
+<meta name="twitter:description" content="初入 linux-centos 6.5(一)
+
+
+0x00前言
+Linux承载的东西太多，它鼓励大家通过代码分享智慧，它是一个开放的、自由的平台的核心力量，Linux让你参与进来。承载了当初很多“黑客”的精神吧，我已经忘了我为了什么装linux了。">
+<meta name="twitter:image" content="https://shawnleon.github.io/images/linux-cntos6.5/0.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://shawnleon.github.io/2016/08/03/linux-let-me-in/"/>
+
+  <title> linux | 冲破桎梏 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">冲破桎梏</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">金水桥畔龙吐珠,少林佛国大旱年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                linux
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-03T16:30:26+08:00" content="2016-08-03">
+              2016-08-03
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/03/linux-let-me-in/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/03/linux-let-me-in/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="初入-linux-centos-6-5-一"><a href="#初入-linux-centos-6-5-一" class="headerlink" title="初入 linux-centos 6.5(一)"></a>初入 linux-centos 6.5(一)</h1><hr>
+<p><img src="/images/linux-cntos6.5/0.jpg" alt="image"></p>
+<hr>
+<h2 id="0x00前言"><a href="#0x00前言" class="headerlink" title="0x00前言"></a>0x00前言</h2><hr>
+<p>Linux承载的东西太多，它鼓励大家通过代码分享智慧，它是一个开放的、自由的平台的核心力量，Linux让你参与进来。<br>承载了当初很多“黑客”的精神吧，我已经忘了我为了什么装linux了。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="0x01-网络"><a href="#0x01-网络" class="headerlink" title="0x01 网络"></a>0x01 网络</h2><hr>
+<p>网络，已然成为当代必不可少的了。一个操作系统没网，什么都干不了吧。</p>
+<p>我安装的centos6.5.下面开始配置网络NAT模式。NAT转换可以有效的保护此主机，别人找不到此主机，因为NAT转换。</p>
+<p>连接XSHELL ，假装没有配置ip。</p>
+<p>首先，临时配置IP不做描述，因为大多是工作网络，不会一直变来变去的。<br>开始开机自启配置IP<br>编辑所在文件代码：</p>
+<blockquote>
+<p>vim /etc/sysconfig/network-scripts/ifcfg-eth0</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/1.png" alt="image"></p>
+<p>上图中根据自己虚拟机编辑选项中虚拟网络编辑器的信息配置 （详情如下图）</p>
+<p><img src="/images/linux-cntos6.5/2.png" alt="image"><br>在配置DNS服务器</p>
+<blockquote>
+<p>vim /etc/resolv.conf</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/3.png" alt="image"><br>或者输入</p>
+<blockquote>
+<p>echo “nameserver 114.114.114.114” &gt; /etc/insolv.conf</p>
+</blockquote>
+<p>查看路由是否有默认路由</p>
+<blockquote>
+<p>route</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/4.png" alt="image"><br>如果没有就输入命令添加默认路由</p>
+<blockquote>
+<p>route add 0.0.0.0 gw 192.168.25.2</p>
+</blockquote>
+<p>确认关闭防火墙或者防火墙放行，windows 在右下角网络中，点击打开网络和共享中心，左下方侧边就有防火墙设置。<br>在linux中，chkconfig (查看开机自启等项)</p>
+<blockquote>
+<p>chkconfig |grep iptables</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/5.png" alt="image"></p>
+<p>关闭某服务</p>
+<blockquote>
+<p>service 服务 restart/start/stop</p>
+</blockquote>
+<p>某服务关闭开机自启</p>
+<blockquote>
+<p>chkconfig –level 345 iptable off</p>
+</blockquote>
+<p>然后就重启网络服务</p>
+<blockquote>
+<p>service network restart</p>
+</blockquote>
+<p>网络就设置好了。一般就尝试ping外网成功。</p>
+<hr>
+<h2 id="0x02一些基础操作"><a href="#0x02一些基础操作" class="headerlink" title="0x02一些基础操作"></a>0x02一些基础操作</h2><hr>
+<p>基础操作就像在windows中的打开文件后编辑保存，然后复制一份移动到某个目录，删除原文件，改个文件名字，下载安装工具搭建环境等</p>
+<p>查看当前目录</p>
+<blockquote>
+<p>pwd</p>
+</blockquote>
+<p>显示当前文件和文件夹</p>
+<blockquote>
+<p>ls<br>ls -al 显示权限</p>
+</blockquote>
+<p>进入某个目录,按Tab会弹出提示，在参照补全输入</p>
+<blockquote>
+<p>cd 目录<br>cd / 进入系统目录<br>cd ~ 进入家目录<br>cd .. 或者../ 返回上级目录</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/6.png" alt="image"></p>
+<h3 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h3><p>创建一个空目录文件夹test,进入test并创建一个空白txt文档</p>
+<blockquote>
+<p>mkdir test<br>touch test.txt</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/7.png" alt="image"><br>删除一个test目录,rmdir 只能删除空的。</p>
+<blockquote>
+<p>rm -rf test/</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/8.png" alt="image"></p>
+<h3 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h3><p>编辑test.txt</p>
+<blockquote>
+<p>vim test.txt</p>
+</blockquote>
+<p>vim 常用的按键功能：</p>
+<blockquote>
+<p>i 插入，开始编辑</p>
+<p>vim&nbsp;&nbsp;非编辑模式下（按esc）：</p>
+<p>o &nbsp;&nbsp;向下另开一行编辑 ，O 向上另开一行编辑</p>
+<p>x &nbsp;&nbsp;删除光标处的字符</p>
+<p>dd &nbsp;&nbsp;连续按两下d 会删除一行</p>
+<p>u &nbsp;&nbsp;撤销上次操作</p>
+<p>v+y+o+esc+p &nbsp;&nbsp;复制粘贴到下一行，按v后方向键控制选择的内容，y确定，o下开一行编辑，esc返回非编辑模式，p粘贴</p>
+<p>/sss  &nbsp;搜索sss</p>
+<p>：+数字 &nbsp;到输入数字的那一行 ,  ：$ 到最后一行  ,  ：0 起始位置</p>
+<p>w/b &nbsp;&nbsp;移动到下/上个字符的开头，&nbsp;e 移动到下个字符的末尾， H 当前屏幕显示起始行头位置，  L 当前屏幕显示末尾行头位置</p>
+</blockquote>
+<h4 id="字符替换："><a href="#字符替换：" class="headerlink" title="字符替换："></a>字符替换：</h4><blockquote>
+<p>:s/vivian/sky/ &nbsp;&nbsp;替换当前行第一个 vivian 为 sky<br>:s/vivian/sky/g &nbsp;&nbsp;替换当前行所有 vivian 为 sky<br>:n,\$s/vivian/sky/ &nbsp;&nbsp;替换第 n 行开始到最后一行中每一行的第一个 vivian 为 sky<br>:n,$s/vivian/sky/g &nbsp;&nbsp;替换第 n 行开始到最后一行中每一行所有 vivian 为 sky<br> （n 为数字，若 n 为 .，表示从当前行开始到最后一行）<br>:%s/vivian/sky/&nbsp;&nbsp;（等同于 &gt;:g/vivian/s//sky/）替换每一行的第一个 vivian 为 sky<br>:%s/vivian/sky/g&nbsp;&nbsp;（等同于 :g/vivian/s//sky/g） 替换每一行中所有 vivian 为 sky</p>
+</blockquote>
+<h3 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h3><p>vim 也可查看文件</p>
+<h3 id="head"><a href="#head" class="headerlink" title="head"></a>head</h3><p>head [参数]… [文件]…<br>参数：</p>
+<blockquote>
+<p>-q &nbsp;&nbsp;隐藏文件名<br>-v &nbsp;&nbsp;显示文件名<br>-c&lt;字节&gt;&nbsp;&nbsp; 显示字节数<br>-n&lt;行数&gt; &nbsp;&nbsp;显示的行数<br>head -f  &nbsp;&nbsp;默认监控文件前十行</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/9.png" alt="image"></p>
+<h3 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h3><p>[ -f ] [ -c Number | -n Number | -m Number | -b Number | -k Number ] [ File ]</p>
+<blockquote>
+<p>-f &nbsp;&nbsp;该参数用于监视File文件增长。<br>-c &nbsp;&nbsp; Number 从 Number 字节位置读取指定文件<br>-n &nbsp;&nbsp;Number 从 Number 行位置读取指定文件。<br>-m &nbsp;&nbsp;Number 从 Number 多字节字符位置读取指定文件，比方你的文件假设包括中文字，假设指定-c参数，可能导致截断，但使用-m则会避免该问题。<br>-b &nbsp;&nbsp;Number 从 Number 表示的512字节块位置读取指定文件。<br>-k &nbsp;&nbsp;Number 从 Number 表示的1KB块位置读取指定文件。<br>File &nbsp;&nbsp;指定操作的目标文件名称</p>
+</blockquote>
+<p>上述命令中，都涉及到number，假设不指定，默认显示10行。Number前面可使用正负号，表示该偏移从顶部还是从尾部開始计算。<br>tail可运行文件一般在/usr/bin/以下。</p>
+<h3 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h3><p>其他功能暂且不，在这只写查看功能。<br>显示某行</p>
+<blockquote>
+<p>[root@localhost ruby] # sed -n ‘1p’ ab  &nbsp;&nbsp; &nbsp;&nbsp;        #显示第一行<br>[root@localhost ruby] # sed -n ‘\$p’ ab     &nbsp;&nbsp;&nbsp;&nbsp;      #显示最后一行<br>[root@localhost ruby] # sed -n ‘1,2p’ ab     &nbsp;&nbsp;     #显示1-2行<br>[root@localhost ruby] # sed -n ‘2,\$p’ ab    &nbsp;&nbsp;     #显示2-$行</p>
+</blockquote>
+<h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><p>cat主要有三大功能：</p>
+<blockquote>
+<p>1.一次显示整个文件。&nbsp;&nbsp;\$ cat filename<br>2.从键盘创建一个文件。&nbsp;&nbsp;\$ cat &gt; filename 只能创建新文件,不能编辑已有文件.<br>3.将几个文件合并为一个文件。&nbsp;&nbsp; \$cat file1 file2 &gt; file</p>
+</blockquote>
+<p>参数：</p>
+<blockquote>
+<p>-n 或 –number &nbsp;&nbsp;由 1 开始对所有输出的行数编号<br>-b 或 –number-nonblank 和 -n 相似，只不过对于空白行不编号<br>-s 或 –squeeze-blank&nbsp;&nbsp; 当遇到有连续两行以上的空白行，就代换为一行的空白行</p>
+</blockquote>
+<h3 id="more"><a href="#more" class="headerlink" title="more"></a>more</h3><p>more命令和cat的功能一样都是查看文件里的内容，但有所不同的是more可以按页来查看文件的内容，还支持直接跳转行等功能。<br>命令参数：</p>
+<blockquote>
+<p>+n      &nbsp;&nbsp;从笫n行开始显示<br>-n      &nbsp;&nbsp;定义屏幕大小为n行<br>+/pattern &nbsp;&nbsp;在每个档案显示前搜寻该字串（pattern），然后从该字串前两行之后开始显示<br>-c   &nbsp;&nbsp;    从顶部清屏，然后显示<br>-d   &nbsp; &nbsp;   提示“Press space to continue，’q’ to quit（按空格键继续，按q键退出）”，禁用响铃功能<br>-l    &nbsp; &nbsp;   忽略Ctrl+l（换页）字符<br>-p   &nbsp;&nbsp;    通过清除窗口而不是滚屏来对文件进行换页，与-c选项相似<br>-s   &nbsp; &nbsp;   把连续的多个空行显示为一行<br>-u  &nbsp; &nbsp;   把文件内容中的下画线去掉</p>
+</blockquote>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>DNS的查询指令：host、nslookup、dig</p>
+<h3 id="host"><a href="#host" class="headerlink" title="host"></a>host</h3><blockquote>
+<p>host -a www.baidu.com</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/10.png" alt="image"></p>
+<h3 id="nslookup"><a href="#nslookup" class="headerlink" title="nslookup"></a>nslookup</h3><blockquote>
+<p>nslookup www.baiud.com</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/11.png" alt="image"></p>
+<h3 id="dig"><a href="#dig" class="headerlink" title="dig"></a>dig</h3><blockquote>
+<p>dig www.baidu.com</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/12.png" alt="image"></p>
+<h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h3><p>ping 本地DNS，检查DNS是否能正常解析<br>ping 远程ip, 检查是否网络连接正常。</p>
+<h2 id="日志相关"><a href="#日志相关" class="headerlink" title="日志相关"></a>日志相关</h2><h3 id="管理员经常查看日志是很重要的。可结合grep-awk-sed查看"><a href="#管理员经常查看日志是很重要的。可结合grep-awk-sed查看" class="headerlink" title="管理员经常查看日志是很重要的。可结合grep/awk/sed查看"></a>管理员经常查看日志是很重要的。可结合grep/awk/sed查看</h3><h3 id="finger"><a href="#finger" class="headerlink" title="finger"></a>finger</h3><p>为系统管理员提供知道某个时候到底有多少用户在使用这台Linux主机。<br>finger [选项] [使用者] [用户@主机]</p>
+<p>命令中各选项的含义如下：</p>
+<blockquote>
+<p>-s 显示用户的注册名、实际姓名、终端名称、写状态、停滞时间、登录时间等信息。<br>-l 除了用-s选项显示的信息外，还显示用户主目录、登录shell、邮件状态等信息，以及用户主目录下的.plan、.project和.forward文件的内容。<br>-p 除了不显示.plan文件和.project文件以外，与-l选项相同。</p>
+</blockquote>
+<p><img src="/images/linux-cntos6.5/13.png" alt="image"></p>
+<h3 id="last"><a href="#last" class="headerlink" title="　last"></a>　last</h3><p>该命令用来列出目前与过去登录系统的用户相关信息。指令英文原义：show listing of last logged in users<br>执行last指令时，它会读取位于/var/log目录下名称为wtmp的文件，并把该给文件的内容记录的登录系统的用户名单全部显示出来。<br><img src="/images/linux-cntos6.5/14.png" alt="image"><br>参数说明：<br>　　-a 　把从何处登入系统的主机名称或IP地址，显示在最后一行。<br>　　-d 　将IP地址转换成主机名称。<br>　　-f &lt;记录文件&gt; 　指定记录文件，默认是显示/var/log目录下的wtmp文件的记录，但/var/log目录下得btmp能显示的内容更丰富，可以显示远程登录，例如ssh登录 ，包括失败的登录请求。<br>　　-n &lt;显示列数&gt;或-&lt;显示列数&gt; 　设置列出名单的显示列数。<br>　　-R 　不显示登入系统的主机名称或IP地址。<br>　　-x 　显示系统关机，重新开机，以及执行等级的改变等信息。<br>       -i 显示特定ip登录的情况</p>
+<h2 id="软件安装"><a href="#软件安装" class="headerlink" title="软件安装"></a>软件安装</h2><p>安装其他软件非常重要。<br>几种软件安装方法：</p>
+<h3 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h3><blockquote>
+<p>yum search xxx       搜索xxx资源包信息<br>yum install xxx        安装xxx<br>yum update xxx      更新xxx<br>yum list installed     yum已安装列表<br>yum remove xxx     卸载xxx</p>
+</blockquote>
+<h3 id="rpm"><a href="#rpm" class="headerlink" title="rpm"></a>rpm</h3><blockquote>
+<p>1.安装软件：执行rpm -ivh rpm包名， #rpm -ivh apache-1.3.6.i386.rpm<br>2.升级软件：执行rpm -Uvh rpm包名。<br>3.反安装：执行rpm -e rpm包名。<br>4.查询软件包的详细信息：执行rpm -qpi rpm包名<br>5.查询某个文件是属于那个rpm包的：执行rpm -qf rpm包名<br>6.查该软件包会向系统里面写入哪些文件：执行 rpm -qpl rpm包名</p>
+</blockquote>
+<p>查看rpm安装的所有软件</p>
+<blockquote>
+<p>rpm -qa</p>
+</blockquote>
+<p>卸载</p>
+<blockquote>
+<p>rpm -e </p>
+</blockquote>
+<p>rpm升级某个安装包</p>
+<blockquote>
+<p>rpm -Uvh</p>
+</blockquote>
+<h3 id="源码编译下载"><a href="#源码编译下载" class="headerlink" title="源码编译下载"></a>源码编译下载</h3><p>一般是下载包之后tar解压<br>tar 可解压 zip gzip bzip<br>tar -zxvf ssss.gz </p>
+<p>进入解压后的文件查看readme。根据是否需要./configure<br>再make  make install ,过程中报错缺少什么模块就安装什么模块，要先清楚缓存，再安装顺序安装。</p>
+<h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><p>linux 需要学习的地方还有很多，慢慢把以前写的整理之后发出来。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux-network/" rel="tag">#linux network</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/02/sql-1-GET-Error-based-single-quotes-String/" rel="next" title="sql-1:GET-Error based -single quotes - String">
+                <i class="fa fa-chevron-left"></i> sql-1:GET-Error based -single quotes - String
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/04/get-webshell-searchkilling/" rel="prev" title="webshell获取与查杀">
+                webshell获取与查杀 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/03/linux-let-me-in/"
+     data-title="linux"
+     data-content=""
+     data-url="https://shawnleon.github.io/2016/08/03/linux-let-me-in/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/03/linux-let-me-in/"
+           data-title="linux" data-url="https://shawnleon.github.io/2016/08/03/linux-let-me-in/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1.jpg"
+               alt="shawnleon" />
+          <p class="site-author-name" itemprop="name">shawnleon</p>
+          <p class="site-description motion-element" itemprop="description">天地不仁以万物为刍狗</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnleon" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/copercheung" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/3691383884/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100009656739973" target="_blank" title="facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links/友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://shitoudaren.github.io/" title="shit欧建磊" target="_blank">shit欧建磊</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟伟leelie" target="_blank">伟伟leelie</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lovexiaofeng.cn/" title="call me小峰" target="_blank">call me小峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="大棟哥の" target="_blank">大棟哥の</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="卓卓" target="_blank">卓卓</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="帅乔飞" target="_blank">帅乔飞</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://passwd.tk" title="moon明明如月" target="_blank">moon明明如月</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初入-linux-centos-6-5-一"><span class="nav-number">1.</span> <span class="nav-text">初入 linux-centos 6.5(一)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00前言"><span class="nav-number">1.1.</span> <span class="nav-text">0x00前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-网络"><span class="nav-number">1.3.</span> <span class="nav-text">0x01 网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02一些基础操作"><span class="nav-number">1.4.</span> <span class="nav-text">0x02一些基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建文件"><span class="nav-number">1.4.1.</span> <span class="nav-text">创建文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim"><span class="nav-number">1.4.2.</span> <span class="nav-text">vim</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字符替换："><span class="nav-number">1.4.2.1.</span> <span class="nav-text">字符替换：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看文件"><span class="nav-number">1.4.3.</span> <span class="nav-text">查看文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#head"><span class="nav-number">1.4.4.</span> <span class="nav-text">head</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tail"><span class="nav-number">1.4.5.</span> <span class="nav-text">tail</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sed"><span class="nav-number">1.4.6.</span> <span class="nav-text">sed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cat"><span class="nav-number">1.4.7.</span> <span class="nav-text">cat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#more"><span class="nav-number">1.4.8.</span> <span class="nav-text">more</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS"><span class="nav-number">1.5.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#host"><span class="nav-number">1.5.1.</span> <span class="nav-text">host</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nslookup"><span class="nav-number">1.5.2.</span> <span class="nav-text">nslookup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dig"><span class="nav-number">1.5.3.</span> <span class="nav-text">dig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ping"><span class="nav-number">1.5.4.</span> <span class="nav-text">ping</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#日志相关"><span class="nav-number">1.6.</span> <span class="nav-text">日志相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#管理员经常查看日志是很重要的。可结合grep-awk-sed查看"><span class="nav-number">1.6.1.</span> <span class="nav-text">管理员经常查看日志是很重要的。可结合grep/awk/sed查看</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finger"><span class="nav-number">1.6.2.</span> <span class="nav-text">finger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#last"><span class="nav-number">1.6.3.</span> <span class="nav-text">　last</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#软件安装"><span class="nav-number">1.7.</span> <span class="nav-text">软件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#yum"><span class="nav-number">1.7.1.</span> <span class="nav-text">yum</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rpm"><span class="nav-number">1.7.2.</span> <span class="nav-text">rpm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码编译下载"><span class="nav-number">1.7.3.</span> <span class="nav-text">源码编译下载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结束语"><span class="nav-number">2.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnleon</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"shawnleon"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>
