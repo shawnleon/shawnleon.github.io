@@ -85,12 +85,12 @@
 
 
 
-<meta name="description" content="** 白帽巫师MR.Poter">
+<meta name="description" content="白帽巫师MR.Poter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="web安全之xss简单小计">
 <meta property="og:url" content="https://shawnleon.github.io/2016/08/12/websec-xss/index.html">
 <meta property="og:site_name" content="THE WEAK ARE HARD TO GET THE FAIR">
-<meta property="og:description" content="** 白帽巫师MR.Poter">
+<meta property="og:description" content="白帽巫师MR.Poter">
 <meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/hp.jpg">
 <meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/websecxss.jpg">
 <meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/xss.png">
@@ -115,10 +115,10 @@
 <meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/22.png">
 <meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/23.png">
 <meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/xssd.png">
-<meta property="og:updated_time" content="2016-08-26T14:44:38.186Z">
+<meta property="og:updated_time" content="2016-08-26T14:48:19.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web安全之xss简单小计">
-<meta name="twitter:description" content="** 白帽巫师MR.Poter">
+<meta name="twitter:description" content="白帽巫师MR.Poter">
 <meta name="twitter:image" content="https://shawnleon.github.io/images/websec-xss/hp.jpg">
 
 
@@ -364,8 +364,11 @@
       
 
       
-        <p><img src="/images/websec-xss/hp.jpg" alt="image"><br>** 白帽巫师MR.Poter<br><a id="more"></a><br><img src="/images/websec-xss/websecxss.jpg" alt="image"></p>
-<h2 id="白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。"><a href="#白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。" class="headerlink" title="** 白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。"></a>** 白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。</h2><h1 id="0x00-什么是xss？危害？"><a href="#0x00-什么是xss？危害？" class="headerlink" title="0x00 什么是xss？危害？"></a>0x00 什么是xss？危害？</h1><hr>
+        <p><img src="/images/websec-xss/hp.jpg" alt="image"></p>
+<p><strong> 白帽巫师MR.Poter </strong><br><a id="more"></a><br><img src="/images/websec-xss/websecxss.jpg" alt="image"></p>
+<p><strong> 白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。</strong></p>
+<hr>
+<h1 id="0x00-什么是xss？危害？"><a href="#0x00-什么是xss？危害？" class="headerlink" title="0x00 什么是xss？危害？"></a>0x00 什么是xss？危害？</h1><hr>
 <h2 id="什么是xss？"><a href="#什么是xss？" class="headerlink" title="什么是xss？"></a>什么是xss？</h2><p>跨站脚本攻击(Cross Site Scripting)，为不和层叠样式表(Cascading Style Sheets, CSS)的缩写混淆，故将跨站脚本攻击缩写为XSS。恶意攻击者往Web页面里插入恶意Script代码，当用户浏览该页之时，嵌入其中Web里面的Script代码会被执行，从而达到恶意攻击盗取用户cookie和session，、破坏页面结构、重定向到其它网站等。<br>跨站脚本重要的是脚本，跨站是浏览器的特性，不是缺陷。造成这样的假象是因为大多说的XSS攻击都采用嵌入远程或者第三方域的脚本资源。这样的脚本主要有javascript和actionscript。<br>xss这类攻击是浏览器来解析执行的，浏览器会严格按照同源策略解析，不符合约定的不会执行。</p>
 <h2 id="xss的危害有多大？"><a href="#xss的危害有多大？" class="headerlink" title="xss的危害有多大？"></a>xss的危害有多大？</h2><p>真正的xss攻击不是简单的弹个测试的框，而是诸如<br><code>&lt;script src=“http://xxx/x.js”&gt;&lt;/script&gt;</code> 的js代码。<br>危害是由行为决定的，在各大漏洞平台总结的XSS可能造成的行为及危害有</p>
 <blockquote>
@@ -669,7 +672,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。"><span class="nav-number">1.</span> <span class="nav-text">** 白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-什么是xss？危害？"><span class="nav-number"></span> <span class="nav-text">0x00 什么是xss？危害？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是xss？"><span class="nav-number">1.</span> <span class="nav-text">什么是xss？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xss的危害有多大？"><span class="nav-number">2.</span> <span class="nav-text">xss的危害有多大？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-xss的分类"><span class="nav-number"></span> <span class="nav-text">0x01 xss的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-反射（非持久）型xss攻击"><span class="nav-number">1.</span> <span class="nav-text">1.反射（非持久）型xss攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-储存（持久）型xss攻击"><span class="nav-number">2.</span> <span class="nav-text">2.储存（持久）型xss攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他XSS暂时未接触"><span class="nav-number">3.</span> <span class="nav-text">其他XSS暂时未接触</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-实例"><span class="nav-number"></span> <span class="nav-text">0x02 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#反射型xss"><span class="nav-number">1.</span> <span class="nav-text">反射型xss</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#某赴美生子"><span class="nav-number">1.1.</span> <span class="nav-text">某赴美生子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人物周刊"><span class="nav-number">1.2.</span> <span class="nav-text">人物周刊</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储型XSS"><span class="nav-number">2.</span> <span class="nav-text">存储型XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#某手机论坛"><span class="nav-number">2.1.</span> <span class="nav-text">某手机论坛</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#某电影网"><span class="nav-number">2.2.</span> <span class="nav-text">某电影网</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-防御"><span class="nav-number">3.</span> <span class="nav-text">0x04 防御</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-什么是xss？危害？"><span class="nav-number">1.</span> <span class="nav-text">0x00 什么是xss？危害？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是xss？"><span class="nav-number">1.1.</span> <span class="nav-text">什么是xss？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xss的危害有多大？"><span class="nav-number">1.2.</span> <span class="nav-text">xss的危害有多大？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-xss的分类"><span class="nav-number">2.</span> <span class="nav-text">0x01 xss的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-反射（非持久）型xss攻击"><span class="nav-number">2.1.</span> <span class="nav-text">1.反射（非持久）型xss攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-储存（持久）型xss攻击"><span class="nav-number">2.2.</span> <span class="nav-text">2.储存（持久）型xss攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他XSS暂时未接触"><span class="nav-number">2.3.</span> <span class="nav-text">其他XSS暂时未接触</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-实例"><span class="nav-number">3.</span> <span class="nav-text">0x02 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#反射型xss"><span class="nav-number">3.1.</span> <span class="nav-text">反射型xss</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#某赴美生子"><span class="nav-number">3.1.1.</span> <span class="nav-text">某赴美生子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人物周刊"><span class="nav-number">3.1.2.</span> <span class="nav-text">人物周刊</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储型XSS"><span class="nav-number">3.2.</span> <span class="nav-text">存储型XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#某手机论坛"><span class="nav-number">3.2.1.</span> <span class="nav-text">某手机论坛</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#某电影网"><span class="nav-number">3.2.2.</span> <span class="nav-text">某电影网</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-防御"><span class="nav-number">3.3.</span> <span class="nav-text">0x04 防御</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
