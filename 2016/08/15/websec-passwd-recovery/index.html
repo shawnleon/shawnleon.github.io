@@ -87,11 +87,12 @@
 
 <meta name="description" content="该图片出处是经典电影《教父》，大概是老柯里昂对长子桑尼说的，之后他已经把大权移交，还被对手暗杀，差点死掉">
 <meta property="og:type" content="article">
-<meta property="og:title" content="密码找回逻辑漏洞">
+<meta property="og:title" content="逻辑漏洞之密码找回">
 <meta property="og:url" content="https://shawnleon.github.io/2016/08/15/websec-passwd-recovery/index.html">
 <meta property="og:site_name" content="THE WEAK ARE HARD TO GET THE FAIR">
 <meta property="og:description" content="该图片出处是经典电影《教父》，大概是老柯里昂对长子桑尼说的，之后他已经把大权移交，还被对手暗杀，差点死掉">
 <meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/passwd-recovery.jpg">
+<meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/pwd.png">
 <meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/1.png">
 <meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/2.png">
 <meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/3.png">
@@ -107,9 +108,9 @@
 <meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/15.png">
 <meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/16.png">
 <meta property="og:image" content="https://shawnleon.github.io/images/passwd-recovery/17.png">
-<meta property="og:updated_time" content="2016-08-25T02:41:41.463Z">
+<meta property="og:updated_time" content="2016-09-02T07:15:09.692Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="密码找回逻辑漏洞">
+<meta name="twitter:title" content="逻辑漏洞之密码找回">
 <meta name="twitter:description" content="该图片出处是经典电影《教父》，大概是老柯里昂对长子桑尼说的，之后他已经把大权移交，还被对手暗杀，差点死掉">
 <meta name="twitter:image" content="https://shawnleon.github.io/images/passwd-recovery/passwd-recovery.jpg">
 
@@ -134,7 +135,7 @@
 
   <link rel="canonical" href="https://shawnleon.github.io/2016/08/15/websec-passwd-recovery/"/>
 
-  <title> 密码找回逻辑漏洞 | THE WEAK ARE HARD TO GET THE FAIR </title>
+  <title> 逻辑漏洞之密码找回 | THE WEAK ARE HARD TO GET THE FAIR </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -304,7 +305,7 @@
             
             
               
-                密码找回逻辑漏洞
+                逻辑漏洞之密码找回
               
             
           </h1>
@@ -391,12 +392,11 @@
 <li>密保答案</li>
 </ul>
 </blockquote>
-<p>密保答案比较难猜解，除程序员直接放到网站上。</p>
+<p>密保答案比较难猜解，除程序员直接放到网站上。<br>挖掘导图<br><img src="/images/passwd-recovery/pwd.png" alt="image"></p>
 <hr>
 <h1 id="0x02-实例演示"><a href="#0x02-实例演示" class="headerlink" title="0x02 实例演示"></a>0x02 实例演示</h1><hr>
 <p>测试网站：某电商平台</p>
-<h3 id="验证码爆破"><a href="#验证码爆破" class="headerlink" title="验证码爆破"></a>验证码爆破</h3><p>注册账号后，申请邮箱找回密码。<strong>使用临时邮箱或者一直都是自用的测试专用邮箱注册</strong></p>
-<p><img src="/images/passwd-recovery/1.png" alt="image"></p>
+<h3 id="验证码爆破"><a href="#验证码爆破" class="headerlink" title="验证码爆破"></a>验证码爆破</h3><p>注册账号后，申请邮箱找回密码。<strong>使用临时邮箱或者一直都是自用的测试专用邮箱注册</strong><br><img src="/images/passwd-recovery/1.png" alt="image"></p>
 <p>填写邮箱和验证码后</p>
 <p>点击获取校检码，</p>
 <p><img src="/images/passwd-recovery/2.png" alt="image"><br>查看邮箱收到几位数的验证码<br><img src="/images/passwd-recovery/3.png" alt="image"><br>发现是4位，随便输入1234，burpsuit抓包查看，<strong>此时验证码为9704</strong><br><img src="/images/passwd-recovery/4.png" alt="image"><br><img src="/images/passwd-recovery/5.png" alt="image"></p>
@@ -476,7 +476,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2016/08/15/websec-passwd-recovery/"
-     data-title="密码找回逻辑漏洞"
+     data-title="逻辑漏洞之密码找回"
      data-content=""
      data-url="https://shawnleon.github.io/2016/08/15/websec-passwd-recovery/">
   <div class="ds-share-inline">
@@ -506,7 +506,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/08/15/websec-passwd-recovery/"
-           data-title="密码找回逻辑漏洞" data-url="https://shawnleon.github.io/2016/08/15/websec-passwd-recovery/">
+           data-title="逻辑漏洞之密码找回" data-url="https://shawnleon.github.io/2016/08/15/websec-passwd-recovery/">
       </div>
     
   </div>
