@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="web-security" />
+  <meta name="keywords" content="渗透工具," />
 
 
 
@@ -85,15 +85,16 @@
 
 
 
-<meta name="description" content="People always like the person who are willing to trust them.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="THE WEAK ARE HARD TO GET THE FAIR">
-<meta property="og:url" content="https://shawnleon.github.io/tags/skills-小技巧/index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神器mimikatz">
+<meta property="og:url" content="https://shawnleon.github.io/2016/09/10/mimikatz/index.html">
 <meta property="og:site_name" content="THE WEAK ARE HARD TO GET THE FAIR">
-<meta property="og:description" content="People always like the person who are willing to trust them.">
+<meta property="og:image" content="https://shawnleon.github.io/images/渗透工具/18+.jpg">
+<meta property="og:image" content="https://shawnleon.github.io/images/渗透工具/fa.jpg">
+<meta property="og:updated_time" content="2016-11-16T14:04:12.681Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="THE WEAK ARE HARD TO GET THE FAIR">
-<meta name="twitter:description" content="People always like the person who are willing to trust them.">
+<meta name="twitter:title" content="神器mimikatz">
+<meta name="twitter:image" content="https://shawnleon.github.io/images/渗透工具/18+.jpg">
 
 
 
@@ -114,9 +115,9 @@
 
 
 
-  <link rel="canonical" href="https://shawnleon.github.io/tags/skills-小技巧/"/>
+  <link rel="canonical" href="https://shawnleon.github.io/2016/09/10/mimikatz/"/>
 
-  <title> 标签: skills--小技巧 | THE WEAK ARE HARD TO GET THE FAIR </title>
+  <title> 神器mimikatz | THE WEAK ARE HARD TO GET THE FAIR </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -137,7 +138,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -265,46 +266,160 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        skills--小技巧
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                神器mimikatz
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-10T23:20:00+08:00" content="2016-09-10">
+              2016-09-10
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/10/mimikatz/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/10/mimikatz/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+      
+        <p><img src="/images/渗透工具/18+.jpg" alt="image"></p>
+<a id="more"></a>
+<hr>
+<h1 id="0x00-工具简介"><a href="#0x00-工具简介" class="headerlink" title="0x00 工具简介"></a>0x00 工具简介</h1><hr>
+<p>mimikatz，很多人称之为密码抓取神器，确实是。在使用非administrator远程到目标机器后，我们可以使用神器来读取管理员的明文密码，借用女神一分钟电脑就知道她密码了<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">内网渗透中，此神器还有其他作用，暂时没有研究，[MARK此博客可深入探索](http://blog.csdn.net/pyphrb/article/details/52051321) </div><div class="line"></div><div class="line">---</div><div class="line">## 0x01 命令</div><div class="line">---</div><div class="line">找到32或者64位的EXE管理员身份打开</div><div class="line">输入两条命令</div><div class="line">![image](/images/渗透工具/1.jpg)</div><div class="line">```</div><div class="line">privilege::debug</div><div class="line">回显 privilege &apos;20&apos;ok</div><div class="line">sekurlsa::logonpasswords</div><div class="line">回显密码等hash信息</div><div class="line"></div><div class="line">```</div><div class="line"></div><div class="line"></div><div class="line">---</div><div class="line">##  0x02 测试</div><div class="line">---</div><div class="line">在我电脑win7测试</div><div class="line">### 嗯，骑兵</div><div class="line"></div><div class="line">![image](/images/渗透工具/2.jpg)</div><div class="line"></div><div class="line">是不是蠢蠢欲动呢</div></pre></td></tr></table></figure></p>
+<p><img src="/images/渗透工具/fa.jpg" alt="image"></p>
+<p><strong>题外话：如果你对本站文章字体有任何不适，请告知我，我会回复你，字体问题请配置浏览器，调到对眼睛舒适的大小;默认不允许转载，除非转载注明出处。</strong></p>
+<p>end</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/08/08/markdown/" itemprop="url">
-              
-                <span itemprop="name">makedown 语法小结</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-08T16:30:26+08:00"
-              content="2016-08-08" >
-          08-08
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/渗透工具/" rel="tag">#渗透工具</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/21/python-study-2/" rel="next" title="python.study.2.小爬虫">
+                <i class="fa fa-chevron-left"></i> python.study.2.小爬虫
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/09/10/mimikatz/"
+     data-title="神器mimikatz"
+     data-content=""
+     data-url="https://shawnleon.github.io/2016/09/10/mimikatz/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -312,6 +427,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/09/10/mimikatz/"
+           data-title="神器mimikatz" data-url="https://shawnleon.github.io/2016/09/10/mimikatz/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -331,8 +454,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/1.jpg"
@@ -456,6 +588,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-工具简介"><span class="nav-number">1.</span> <span class="nav-text">0x00 工具简介</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -574,6 +717,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
