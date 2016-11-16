@@ -90,8 +90,10 @@
 <meta property="og:url" content="https://shawnleon.github.io/2016/09/10/mimikatz/index.html">
 <meta property="og:site_name" content="THE WEAK ARE HARD TO GET THE FAIR">
 <meta property="og:image" content="https://shawnleon.github.io/images/渗透工具/18+.jpg">
+<meta property="og:image" content="https://shawnleon.github.io/images/渗透工具/1.jpg">
+<meta property="og:image" content="https://shawnleon.github.io/images/渗透工具/2.jpg">
 <meta property="og:image" content="https://shawnleon.github.io/images/渗透工具/fa.jpg">
-<meta property="og:updated_time" content="2016-11-16T14:04:12.681Z">
+<meta property="og:updated_time" content="2016-11-16T14:16:17.704Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="神器mimikatz">
 <meta name="twitter:image" content="https://shawnleon.github.io/images/渗透工具/18+.jpg">
@@ -343,7 +345,16 @@
 <a id="more"></a>
 <hr>
 <h1 id="0x00-工具简介"><a href="#0x00-工具简介" class="headerlink" title="0x00 工具简介"></a>0x00 工具简介</h1><hr>
-<p>mimikatz，很多人称之为密码抓取神器，确实是。在使用非administrator远程到目标机器后，我们可以使用神器来读取管理员的明文密码，借用女神一分钟电脑就知道她密码了<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">内网渗透中，此神器还有其他作用，暂时没有研究，[MARK此博客可深入探索](http://blog.csdn.net/pyphrb/article/details/52051321) </div><div class="line"></div><div class="line">---</div><div class="line">## 0x01 命令</div><div class="line">---</div><div class="line">找到32或者64位的EXE管理员身份打开</div><div class="line">输入两条命令</div><div class="line">![image](/images/渗透工具/1.jpg)</div><div class="line">```</div><div class="line">privilege::debug</div><div class="line">回显 privilege &apos;20&apos;ok</div><div class="line">sekurlsa::logonpasswords</div><div class="line">回显密码等hash信息</div><div class="line"></div><div class="line">```</div><div class="line"></div><div class="line"></div><div class="line">---</div><div class="line">##  0x02 测试</div><div class="line">---</div><div class="line">在我电脑win7测试</div><div class="line">### 嗯，骑兵</div><div class="line"></div><div class="line">![image](/images/渗透工具/2.jpg)</div><div class="line"></div><div class="line">是不是蠢蠢欲动呢</div></pre></td></tr></table></figure></p>
+<p>mimikatz，很多人称之为密码抓取神器，确实是。在使用非administrator远程到目标机器后，我们可以使用神器来读取管理员的明文密码，借用女神一分钟电脑就知道她密码了~<br>内网渗透中，此神器还有其他作用，暂时没有研究，<a href="http://blog.csdn.net/pyphrb/article/details/52051321" target="_blank" rel="external">MARK此博客可深入探索</a> </p>
+<hr>
+<h2 id="0x01-命令"><a href="#0x01-命令" class="headerlink" title="0x01 命令"></a>0x01 命令</h2><hr>
+<p>找到32或者64位的EXE管理员身份打开<br>输入两条命令<br><img src="/images/渗透工具/1.jpg" alt="image"><br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function">privilege::<span class="title">debug</span></span></div><div class="line">回显 <span class="title">privilege</span> '20'<span class="title">ok</span></div><div class="line"><span class="title">sekurlsa</span>::<span class="title">logonpasswords</span></div><div class="line">回显密码等<span class="title">hash</span>信息</div></pre></td></tr></table></figure></p>
+<p>2323</p>
+<hr>
+<h2 id="0x02-测试"><a href="#0x02-测试" class="headerlink" title="0x02 测试"></a>0x02 测试</h2><hr>
+<p>在我电脑win7测试</p>
+<h3 id="嗯，骑兵"><a href="#嗯，骑兵" class="headerlink" title="嗯，骑兵"></a>嗯，骑兵</h3><p><img src="/images/渗透工具/2.jpg" alt="image"></p>
+<p>是不是蠢蠢欲动呢~~~</p>
 <p><img src="/images/渗透工具/fa.jpg" alt="image"></p>
 <p><strong>题外话：如果你对本站文章字体有任何不适，请告知我，我会回复你，字体问题请配置浏览器，调到对眼睛舒适的大小;默认不允许转载，除非转载注明出处。</strong></p>
 <p>end</p>
@@ -594,7 +605,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-工具简介"><span class="nav-number">1.</span> <span class="nav-text">0x00 工具简介</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#0x00-工具简介"><span class="nav-number">1.</span> <span class="nav-text">0x00 工具简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#0x01-命令"><span class="nav-number">1.1.</span> <span class="nav-text">0x01 命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#0x02-测试"><span class="nav-number">1.2.</span> <span class="nav-text">0x02 测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#嗯，骑兵"><span class="nav-number">1.2.1.</span> <span class="nav-text">嗯，骑兵</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
